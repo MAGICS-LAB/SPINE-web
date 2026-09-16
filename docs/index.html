@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SPINE</title>
+<meta name="description" content="SPINE: Bridging the Cyber-Physical Gap with Agentic AI. An agentic framework that debugs and deploys bimanual robots for teleoperation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#FFFFFF; --ink:#1B1B1B; --ink-2:#4A4A4A; --ink-3:#767676; --rule:#D9D9D9; --rule-2:#EBEBEB; --soft:#F5F5F5;
+  --link:#1A4FB4; --spine:#1A4FB4; --human:#9A9A9A;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121212; --ink:#E8E8E8; --ink-2:#B8B8B8; --ink-3:#8A8A8A; --rule:#3A3A3A; --rule-2:#262626; --soft:#1C1C1C;
+    --link:#8FB0FF; --spine:#8FB0FF; --human:#6A6A6A;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121212; --ink:#E8E8E8; --ink-2:#B8B8B8; --ink-3:#8A8A8A; --rule:#3A3A3A; --rule-2:#262626; --soft:#1C1C1C;
+  --link:#8FB0FF; --spine:#8FB0FF; --human:#6A6A6A;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;padding-inline:20px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+code,pre,.mono{font-family:"IBM Plex Mono",Menlo,Consolas,monospace}
+code{font-size:.92em;background:var(--soft);padding:1px 5px;border-radius:3px}
+h1,h2,h3{margin:0;line-height:1.2;text-wrap:balance;font-weight:600;letter-spacing:-.01em}
+p{margin:0}
+.col{max-width:820px;margin:0 auto}
+.wide{max-width:1040px;margin:0 auto}
+section{padding-block:30px}
+section + section{border-top:1px solid var(--rule-2)}
+h2{font-size:26px;margin-bottom:14px}
+h3{font-size:18px;margin:26px 0 8px}
+.text p + p{margin-top:12px}
+.muted{color:var(--ink-3);font-size:14.5px}
+/* ---------- header ---------- */
+header{text-align:center;padding-block:56px 20px}
+.wordmark{display:flex;justify-content:center;gap:.16em;font-family:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;font-weight:800;font-size:clamp(64px,11vw,124px);line-height:.95;letter-spacing:-.04em;font-variation-settings:"wdth" 82,"opsz" 96;color:var(--ink)}
+.wordmark span{display:inline-block;animation:rise .7s cubic-bezier(.2,.8,.2,1) both}
+.wordmark span:nth-child(2){animation-delay:.06s}.wordmark span:nth-child(3){animation-delay:.12s}.wordmark span:nth-child(4){animation-delay:.18s}.wordmark span:nth-child(5){animation-delay:.24s}
+@keyframes rise{from{transform:translateY(.3em);opacity:0}to{transform:none;opacity:1}}
+.expand{margin-top:14px;font-size:clamp(15px,1.5vw,18px);color:var(--ink-2);letter-spacing:.01em}
+.expand b{color:var(--link);font-weight:600}
+header h1{font-size:clamp(24px,3vw,32px);font-weight:500;margin-top:44px;color:var(--ink)}
+.authors{margin-top:26px;font-size:17px;line-height:1.7}
+.authors span{white-space:nowrap}
+.authors sup{font-size:11px;color:var(--ink-3)}
+.affil{margin-top:8px;font-size:13.5px;color:var(--ink-2);line-height:1.6}
+.affil sup{font-size:11px;color:var(--ink-3)}
+.links{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:22px}
+.links a{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:var(--bg);padding:9px 18px;border-radius:999px;font-size:15px;font-weight:500}
+.links a:hover{text-decoration:none;opacity:.85}
+.links a.dis{background:transparent;color:var(--ink-3);border:1px solid var(--rule);cursor:default}
+.links a.dis:hover{opacity:1}
+.links svg{width:16px;height:16px}
+/* ---------- figures ---------- */
+figure{margin:0}
+figure img{display:block;width:100%;height:auto;max-width:100%}
+figcaption{margin-top:10px;font-size:14.5px;color:var(--ink-2);line-height:1.5}
+figcaption b{color:var(--ink);font-weight:600}
+.teaser{padding-block:28px 40px}
+.pair{display:grid;grid-template-columns:4fr 3fr;gap:24px;align-items:start}
+@media(max-width:760px){.pair{grid-template-columns:1fr}}
+.pair img{border:1px solid var(--rule-2)}
+.fig1 img{border:1px solid var(--rule-2);background:#fff}
+/* ---------- tables (booktabs) ---------- */
+.tbl{overflow-x:auto;margin-top:24px}
+table{border-collapse:collapse;width:100%;font-size:15px;line-height:1.45}
+th,td{padding:7px 12px;text-align:left;vertical-align:top}
+th{font-weight:600;border-top:1.5px solid var(--ink);border-bottom:1px solid var(--ink);white-space:nowrap}
+th.sub{border-top:0;font-weight:500;color:var(--ink-3);font-size:13px;padding-top:2px}
+tbody tr:last-child td{border-bottom:1.5px solid var(--ink)}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+td.best{font-weight:600}
+td .sd{color:var(--ink-3);font-weight:400}
+tr.spine td{background:var(--soft)}
+tr.group td{border-top:1px solid var(--rule)}
+tr.total td{border-top:1px solid var(--ink);font-weight:600}
+tr.plat td{font-style:italic;color:var(--ink-2);border-top:1px solid var(--rule)}
+.tbl caption{caption-side:top;text-align:left;font-size:14.5px;color:var(--ink-2);padding:0 0 8px;line-height:1.5}
+.tbl caption b{color:var(--ink);font-weight:600}
+.key{max-width:820px;margin:24px auto 0}
+.key table{font-size:15.5px}
+td.id{white-space:nowrap;font-family:"IBM Plex Mono",Menlo,monospace;font-size:13.5px}
+/* ---------- charts ---------- */
+.charts{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:14px}
+@media(max-width:760px){.charts{grid-template-columns:1fr}}
+.chart h4{margin:0 0 2px;font-size:15px;font-weight:600}
+.chart .muted{margin-bottom:6px}
+.chart svg{width:100%;height:auto;display:block}
+.legend{display:flex;gap:18px;font-size:14px;color:var(--ink-2);margin-top:6px}
+.legend i{display:inline-block;width:10px;height:10px;margin-right:6px;vertical-align:-1px}
+/* ---------- bibtex ---------- */
+pre.bib{margin:10px 0 0;background:var(--soft);border:1px solid var(--rule-2);padding:10px 14px;border-radius:4px;font-size:12.5px;line-height:1.45;overflow-x:auto;white-space:pre-wrap;word-break:break-word;color:var(--ink)}
+.copy{font:inherit;font-size:14px;padding:5px 12px;border:1px solid var(--rule);background:var(--bg);color:var(--ink);border-radius:4px;cursor:pointer}
+.copy:focus-visible,.links a:focus-visible{outline:2px solid var(--link);outline-offset:2px}
+.bibhead{display:flex;justify-content:space-between;align-items:center;gap:12px}
+footer{border-top:1px solid var(--rule-2);padding-block:28px 40px;font-size:14px;color:var(--ink-3);text-align:center}
+</style>
+</head>
+<body>
+
+<header class="col">
+  <div class="wordmark" aria-hidden="true"><span>S</span><span>P</span><span>I</span><span>N</span><span>E</span></div>
+  <p class="expand"><b>S</b>calable <b>P</b>hysical <b>I</b>ntegration with age<b>N</b>tic <b>E</b>xpertise</p>
+  <h1>SPINE: Bridging the Cyber‑Physical Gap with Agentic AI</h1>
+  <p class="authors">
+    <span>Minkyu Ham<sup>1,*</sup></span>, <span>Dongho Kim<sup>1,*</sup></span>, <span>Chan Lee<sup>1,*</sup></span>, <span>Min Jun Kim<sup>1</sup></span>, <span>Yixi Zhang<sup>2</sup></span>, <span>Jiayi Wang<sup>2</sup></span>, <span>Han Liu<sup>1,2,†</sup></span>
+  </p>
+  <p class="affil"><sup>1</sup>Department of Statistics and Data Science, Northwestern University &nbsp; <sup>2</sup>Department of Computer Science, Northwestern University<br><sup>*</sup>Equal contribution, alphabetical by last name &nbsp; <sup>†</sup>Correspondence: <a href="mailto:hanliu@northwestern.edu">hanliu@northwestern.edu</a></p>
+  <div class="links">
+    <a href="assets/SPINE-2026.pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 3h8l5 5v13H6z"/><path d="M14 3v5h5M9 13h7M9 17h7"/></svg>Paper</a>
+    <a class="dis" href="#code" title="Repository link will be added on release"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M8 9l-4 3 4 3M16 9l4 3-4 3M14 5l-4 14"/></svg>Code (coming soon)</a>
+    <a href="#bibtex"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 7h10M7 12h10M7 17h6"/></svg>BibTeX</a>
+  </div>
+</header>
+
+<div class="wide teaser">
+  <div class="pair">
+    <figure><img src="assets/dobot.jpg" alt="DOBOT X-Trainer bimanual teleoperation platform seen from above"><figcaption><b>DOBOT X-Trainer.</b> Two follower arms, two leader arms, RealSense cameras and a vendor SDK over static Ethernet. Seven scenarios.</figcaption></figure>
+    <figure><img src="assets/piper.jpg" alt="AgileX PiPER bimanual platform"><figcaption><b>AgileX PiPER.</b> Four PiPER 6-DOF arms on ROS Noetic with USB-to-CAN adapters and RealSense cameras. Five scenarios.</figcaption></figure>
+  </div>
+</div>
+
+<section class="col" id="abstract">
+  <h2>Abstract</h2>
+  <div class="text">
+    <p>Foundation models give robots powerful high-level reasoning, yet turning that intelligence into reliable physical action remains difficult: roboticists must still align device drivers, network interfaces, sensors, controllers, and safety constraints for each platform. This often-overlooked integration layer acts as the robot's spinal cord, translating high-level intent into coordinated physical behavior, and remains a primary bottleneck for scalable Embodied AI. Hence, we propose SPINE (Scalable Physical Integration with ageNtic Expertise), an agentic framework for systematically debugging and deploying bimanual robots for teleoperation. SPINE centers on two subagent-driven workflows: a profile builder that compiles robot-specific context and a debugger that uses that context to iterate through diagnosis, repair, and validation until teleoperation succeeds.</p>
+    <p>Across two bimanual robots and 12 debugging scenarios, novice-operated SPINE debugged more accurately and efficiently than expert operators using vanilla LLMs. On DOBOT X-Trainer, SPINE improved success from 76% to 100% and reduced mean time-to-teleoperation by 30%; on AgileX PiPER, SPINE also achieved 100% success and reduced mean time-to-teleoperation by 38%. Together, these results show that SPINE leverages agentic AI to solve a critical integration bottleneck, helping bridge the cyber-physical gap that limits scalable real-world embodied AI.</p>
+  </div>
+  <div class="tbl key">
+    <table>
+      <caption><b>Overall outcomes.</b> OSS is the fraction of implanted faults resolved per trial; TTO is time-to-teleoperation and includes unsuccessful trials. Human operators use Claude Code with the same language model but without SPINE.</caption>
+      <thead><tr><th>Platform</th><th>Condition</th><th class="n">Trials</th><th class="n">OSS</th><th class="n">Mean TTO</th></tr></thead>
+      <tbody>
+        <tr class="spine"><td>DOBOT X-Trainer</td><td>SPINE, novice operator</td><td class="n">3 × 7</td><td class="n best">1.00</td><td class="n best">10:20</td></tr>
+        <tr><td></td><td>Human operators with Claude Code</td><td class="n">7 × 7</td><td class="n">0.76</td><td class="n">14:51</td></tr>
+        <tr class="spine group"><td>AgileX PiPER</td><td>SPINE, novice operator</td><td class="n">3 × 5</td><td class="n best">1.00</td><td class="n best">7:48</td></tr>
+        <tr><td></td><td>Human operators with Claude Code</td><td class="n">9 × 5</td><td class="n">0.99</td><td class="n">12:30</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="wide" id="method">
+  <div class="col"><h2>Method</h2>
+  <div class="text">
+    <p>SPINE runs inside Claude Code as two skills. <b>Profile building</b> compiles documentation, a known-good repository and operator-confirmed facts into a sealed robot profile: eight category files plus a manifest, from which runtime adapters derive operating contracts, executable probes and readiness checks, hardware playbooks, and a command graph of the teleoperation pipeline. Nine extraction subagents draft it in parallel; curators, an adjudicator and a deterministic profile doctor check it before it is sealed.</p>
+    <p><b>Debugging</b> is an observe–triage–repair–verify loop. Observation consolidates failures into a blocker ledger. Triage dispatches four read-only diagnostic subagents in one parallel call and adjudicates their reports into a fixability split. Repair applies either one software edit or one operator action from a component-specific playbook. Verification reruns the live teleoperation pipeline and hidden readiness checks together; a case closes only when both pass in the same cycle, and incident memory keeps only fixes backed by a passed validation record.</p>
+  </div></div>
+  <figure class="fig1" style="margin-top:22px">
+    <img src="assets/figure1.png" alt="SPINE architecture: persistent robot context (robot evidence, robot profile, validated memory) grounds a four-stage loop of observe, triage, repair and verify; unresolved cases return new evidence to triage.">
+    <figcaption><b>Figure 1.</b> SPINE separates persistent robot knowledge from a goal-conditioned recovery loop. Triage dispatches four read-only diagnostic sub-agents in one parallel call and adjudicates their reports into a fixability split; repair is a separate stage that applies either a software edit or one operator action. Verification reruns the live teleoperation pipeline and hidden readiness checks together, and unresolved cases return to triage with new evidence rather than restarting observation.</figcaption>
+  </figure>
+</section>
+
+<section class="wide" id="bugs">
+  <div class="col"><h2>Debugging scenarios</h2>
+  <div class="text"><p>Twelve scenarios across software-only (SW), hardware-only (HW) and hybrid (HY) faults. Each contains two faults except D-HW1. An administrator implants them without revealing the scenario; success means the follower arms and grippers respond to the master arms while the required camera streams are available.</p></div></div>
+  <div class="tbl" id="scen" style="font-size:14.5px"></div>
+</section>
+
+<section class="wide" id="results">
+  <div class="col"><h2>Results</h2>
+  <div class="text"><p>Per-scenario outcomes. SPINE runs three trials per scenario; human trials pool seven operators on DOBOT and nine on PiPER. OSS is the fraction of implanted faults resolved in a trial; TTO is mean ± SD time-to-teleoperation, including unsuccessful trials.</p></div></div>
+
+  <div class="col">
+  <h3>DOBOT X-Trainer</h3>
+  <div class="charts">
+    <div class="chart"><h4>Time-to-teleoperation</h4><p class="muted">mm:ss, mean with SD, lower is better</p><svg id="ch-d-tto" viewBox="0 0 400 250" role="img" aria-label="DOBOT time-to-teleoperation per scenario"></svg></div>
+    <div class="chart"><h4>Faults resolved (OSS)</h4><p class="muted">mean fraction of implanted faults</p><svg id="ch-d-oss" viewBox="0 0 400 250" role="img" aria-label="DOBOT faults resolved per scenario"></svg></div>
+  </div>
+  <div class="legend"><span><i style="background:var(--spine)"></i>SPINE</span><span><i style="background:var(--human)"></i>Human operators</span></div>
+  </div>
+  <div class="tbl" id="tbl-dobot"></div>
+
+  <div class="col">
+  <h3>AgileX PiPER</h3>
+  <div class="charts">
+    <div class="chart"><h4>Time-to-teleoperation</h4><p class="muted">mm:ss, mean with SD, lower is better</p><svg id="ch-p-tto" viewBox="0 0 400 250" role="img" aria-label="PiPER time-to-teleoperation per scenario"></svg></div>
+    <div class="chart"><h4>Faults resolved (OSS)</h4><p class="muted">mean fraction of implanted faults</p><svg id="ch-p-oss" viewBox="0 0 400 250" role="img" aria-label="PiPER faults resolved per scenario"></svg></div>
+  </div>
+  <div class="legend"><span><i style="background:var(--spine)"></i>SPINE</span><span><i style="background:var(--human)"></i>Human operators</span></div>
+  </div>
+  <div class="tbl" id="tbl-piper"></div>
+
+  <div class="col"><h3>Ablation on DOBOT</h3>
+  <div class="text"><p>Removing the robot profile or the hardware playbook lowers fault resolution and lengthens debugging, with the losses concentrated in hardware-only and hybrid scenarios. Each ablated variant has one trial per scenario, so these are preliminary.</p></div></div>
+  <div class="tbl" id="tbl-abl"></div>
+</section>
+
+<section class="col" id="code">
+  <h2>Code</h2>
+  <div class="text"><p>The framework is released as open source. The repository link will be added here on release.</p></div>
+</section>
+
+<section class="col" id="bibtex">
+  <div class="bibhead"><h2 style="margin:0">BibTeX</h2><button class="copy" id="copybtn" type="button">Copy</button></div>
+<pre class="bib" id="bib">@article{ham2026spine,
+  title={SPINE: Bridging the Cyber-Physical Gap with Agentic AI},
+  author={Ham, Minkyu and Kim, Dongho and Lee, Chan and Kim, Min Jun and Zhang, Yixi and Wang, Jiayi and Liu, Han},
+  year={2026}
+}</pre>
+</section>
+
+<footer>Northwestern University · 2026</footer>
+
+<script>
+/* ---------- Table I: scenarios ---------- */
+const SCEN=[
+ ["D-SW1","SW","DOBOT",[["Software","We assign mismatched communication endpoints to the robot server and teleoperation client and alter launcher behavior to occupy a required local port."]]],
+ ["D-SW2","SW","DOBOT",[["Software","We alter the startup compatibility check to reject the installed controller or library version and assign a nonexistent serial number to one camera role. Packages and firmware remain unchanged."]]],
+ ["D-HW1","HW","DOBOT",[["Hardware","We latch the emergency-stop button, preventing arm actuation without changing software or connections."]]],
+ ["D-HW2","HW","DOBOT",[["Hardware","We unplug the right wrist camera cable and replace the left wrist camera cable with a known-broken cable."]]],
+ ["D-HW3","HW","DOBOT",[["Hardware","We disconnect one leader-arm cable and one follower-arm Ethernet cable, interrupting operator input and follower control."]]],
+ ["D-HY1","HY","DOBOT",[["Hardware","We replace the right wrist camera with a known-broken unit."],["Software","We assign that camera role a nonexistent serial number."]]],
+ ["D-HY2","HY","DOBOT",[["Hardware","We unplug the robot-control Ethernet cable."],["Software","We change both controller IP addresses in the launcher to the wrong subnet, leaving host network settings unchanged."]]],
+ ["P-SW1","SW","PiPER",[["Software","We configure an incorrect USB bus address for the left CAN adapter and prioritize user-site Python packages over the intended environment, causing an incompatible Pinocchio import."]]],
+ ["P-SW2","SW","PiPER",[["Software","We assign an incorrect serial number to the left wrist camera and change the teleoperation launch file's inverse-kinematics parameter path to a nonexistent file."]]],
+ ["P-HW1","HW","PiPER",[["Hardware","We disconnect the left follower arm's CAN signal wire or connector and unplug the left wrist camera's USB cable."]]],
+ ["P-HY1","HY","PiPER",[["Hardware","We unplug the left wrist camera's USB cable."],["Software","We assign that camera an incorrect serial number in its launch file."]]],
+ ["P-HY2","HY","PiPER",[["Hardware","We unplug the left USB-to-CAN adapter's USB connection."],["Software","We increase the setup script's expected adapter count from two to three."]]]
+];
+const CLS={SW:"Software-only",HW:"Hardware-only",HY:"Hybrid"};
+document.getElementById("scen").innerHTML=`<table><caption><b>Table I. Injected debugging scenarios.</b> D/P denote DOBOT/PiPER.</caption><thead><tr><th>ID</th><th>Class</th><th>Description</th></tr></thead><tbody>${
+  ["DOBOT","PiPER"].map(p=>`<tr class="plat"><td colspan="3">${p==="DOBOT"?"DOBOT X-Trainer":"AgileX PiPER"}</td></tr>`+SCEN.filter(s=>s[2]===p).map(s=>`<tr><td class="id">${s[0]}</td><td style="white-space:nowrap">${CLS[s[1]]}</td><td>${s[3].map(f=>`<b>${f[0]}:</b> ${f[1]}`).join(" ")}</td></tr>`).join("")).join("")
+}</tbody></table>`;
+
+/* ---------- Table II: outcomes ---------- */
+const T=(m,s)=>m*60+s;
+// [id, short, spine_n, s_oss, s_oss_sd, s_tto, s_tto_sd, h_n, h_oss, h_oss_sd, h_tto, h_tto_sd]
+const OUT={
+ DOBOT:[
+  ["D-SW1","Mismatched local endpoint and busy port",3,1.00,0.00,T(6,20),T(0,1),7,0.36,0.38,T(7,28),T(3,5)],
+  ["D-SW2","Stale environment, version gate, camera ID",3,1.00,0.00,T(6,41),T(1,19),7,0.57,0.45,T(20,11),T(13,25)],
+  ["D-HW1","Latched emergency stop",3,1.00,0.00,T(13,35),T(0,13),7,1.00,0.00,T(20,46),T(6,12)],
+  ["D-HW2","Broken wrist-camera cabling",3,1.00,0.00,T(9,59),T(0,34),7,1.00,0.00,T(17,54),T(17,52)],
+  ["D-HW3","Leader and follower links unplugged",3,1.00,0.00,T(11,18),T(1,44),7,1.00,0.00,T(13,1),T(7,47)],
+  ["D-HY1","Broken wrist camera plus stale ID",3,1.00,0.00,T(14,55),T(0,55),7,0.64,0.38,T(11,55),T(7,44)],
+  ["D-HY2","LAN unplug plus wrong subnet",3,1.00,0.00,T(9,34),T(0,32),7,0.71,0.27,T(12,43),T(9,14)]],
+ PiPER:[
+  ["P-SW1","CAN binding and Python path drift",3,1.00,0.00,T(11,32),T(0,11),9,0.94,0.17,T(16,0),T(10,16)],
+  ["P-SW2","Camera ID and IK config drift",3,1.00,0.00,T(8,28),T(0,6),9,1.00,0.00,T(10,56),T(13,1)],
+  ["P-HW1","Camera and CAN links unplugged",3,1.00,0.00,T(2,45),T(0,22),9,1.00,0.00,T(13,36),T(13,23)],
+  ["P-HY1","Camera unplug plus stale ID",3,1.00,0.00,T(10,44),T(0,19),9,1.00,0.00,T(13,43),T(8,7)],
+  ["P-HY2","CAN adapter unplug plus count drift",3,1.00,0.00,T(5,33),T(0,4),9,1.00,0.00,T(8,14),T(7,27)]]
+};
+const OVERALL={DOBOT:[1.00,0.00,T(10,20),T(3,11),0.76,0.36,T(14,51),T(10,44)],PiPER:[1.00,0.00,T(7,48),T(3,27),0.99,0.07,T(12,30),T(10,35)]};
+const mmss=s=>`${Math.floor(s/60)}:${String(Math.round(s%60)).padStart(2,"0")}`;
+const pm=(v,sd,f)=>`${f(v)} <span class="sd">± ${f(sd)}</span>`;
+const f2=v=>v.toFixed(2);
+function outTable(id,plat,caption){
+  const rows=OUT[plat], o=OVERALL[plat];
+  const body=rows.map(r=>`<tr><td class="id">${r[0]}</td><td>${r[1]}</td><td class="n">${r[2]}</td><td class="n ${r[3]>=r[8]?"best":""}">${pm(r[3],r[4],f2)}</td><td class="n ${r[5]<=r[10]?"best":""}">${pm(r[5],r[6],mmss)}</td><td class="n">${r[7]}</td><td class="n ${r[8]>=r[3]?"best":""}">${pm(r[8],r[9],f2)}</td><td class="n ${r[10]<=r[5]?"best":""}">${pm(r[10],r[11],mmss)}</td></tr>`).join("")
+   +`<tr class="total"><td></td><td>Overall</td><td class="n"></td><td class="n">${pm(o[0],o[1],f2)}</td><td class="n">${pm(o[2],o[3],mmss)}</td><td class="n"></td><td class="n">${pm(o[4],o[5],f2)}</td><td class="n">${pm(o[6],o[7],mmss)}</td></tr>`;
+  document.getElementById(id).innerHTML=`<table><caption>${caption}</caption><thead><tr><th rowspan="2">ID</th><th rowspan="2">Description</th><th colspan="3" style="text-align:center;border-bottom:1px solid var(--rule)">SPINE</th><th colspan="3" style="text-align:center;border-bottom:1px solid var(--rule)">Human operators</th></tr><tr><th class="n sub">n</th><th class="n sub">OSS</th><th class="n sub">TTO</th><th class="n sub">n</th><th class="n sub">OSS</th><th class="n sub">TTO</th></tr></thead><tbody>${body}</tbody></table>`;
+}
+outTable("tbl-dobot","DOBOT","<b>Table II (DOBOT X-Trainer).</b> Bold marks the better value in a scenario.");
+outTable("tbl-piper","PiPER","<b>Table II (AgileX PiPER).</b> Bold marks the better value in a scenario.");
+
+/* ---------- Table III: ablation ---------- */
+const ABL=[["D-SW1",1.00,T(6,20),1.00,T(4,40),1.00,T(20,47)],["D-SW2",1.00,T(6,41),1.00,T(6,37),1.00,T(5,23)],["D-HW1",1.00,T(13,35),1.00,T(11,1),0.00,T(45,0)],["D-HW2",1.00,T(9,59),0.50,T(45,0),0.00,T(45,0)],["D-HW3",1.00,T(11,18),1.00,T(23,52),1.00,T(32,55)],["D-HY1",1.00,T(14,55),0.00,T(20,37),0.50,T(25,50)],["D-HY2",1.00,T(9,34),1.00,T(7,25),0.50,T(45,0)],["Overall",1.00,T(10,20),0.79,T(17,0),0.57,T(31,25)]];
+document.getElementById("tbl-abl").innerHTML=`<table><caption><b>Table III. DOBOT ablation.</b> Full SPINE reports means over n = 3 trials per scenario; each ablated variant is a single trial.</caption><thead><tr><th rowspan="2">ID</th><th colspan="2" style="text-align:center;border-bottom:1px solid var(--rule)">SPINE</th><th colspan="2" style="text-align:center;border-bottom:1px solid var(--rule)">No profile</th><th colspan="2" style="text-align:center;border-bottom:1px solid var(--rule)">No hardware playbook</th></tr><tr><th class="n sub">OSS</th><th class="n sub">TTO</th><th class="n sub">OSS</th><th class="n sub">TTO</th><th class="n sub">OSS</th><th class="n sub">TTO</th></tr></thead><tbody>${
+  ABL.map(r=>`<tr class="${r[0]==="Overall"?"total":""}"><td class="${r[0]==="Overall"?"":"id"}">${r[0]}</td><td class="n">${f2(r[1])}</td><td class="n">${mmss(r[2])}</td><td class="n">${f2(r[3])}</td><td class="n">${mmss(r[4])}</td><td class="n">${f2(r[5])}</td><td class="n">${mmss(r[6])}</td></tr>`).join("")
+}</tbody></table>`;
+
+/* ---------- charts ---------- */
+const cssVar=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+function bars(svgId,rows,pick,max,fmt,ticks,withSd){
+  const svg=document.getElementById(svgId);
+  const W=400,H=250,L=44,R=8,Tp=14,B=40, iw=W-L-R, ih=H-Tp-B;
+  const gw=iw/rows.length, bw=Math.min(18,(gw-12)/2);
+  const ink=cssVar("--ink-2"),ink3=cssVar("--ink-3"),line=cssVar("--rule-2"),cs=cssVar("--spine"),ch=cssVar("--human");
+  let s="";
+  ticks.forEach(t=>{const y=Tp+ih-(t/max)*ih;s+=`<line x1="${L}" x2="${W-R}" y1="${y}" y2="${y}" stroke="${line}"/><text x="${L-6}" y="${y+4}" font-size="10.5" text-anchor="end" fill="${ink3}" font-family="IBM Plex Sans,sans-serif">${fmt(t)}</text>`;});
+  rows.forEach((r,i)=>{
+    const [sv,ssd,hv,hsd]=pick(r);
+    const x0=L+i*gw+(gw-2*bw-3)/2;
+    [[sv,ssd,cs,"SPINE"],[hv,hsd,ch,"Human"]].forEach(([v,sd,c,lab],j)=>{
+      const x=x0+j*(bw+3), h=Math.min(ih,(v/max)*ih), y=Tp+ih-h;
+      s+=`<rect x="${x}" y="${y}" width="${bw}" height="${h}" fill="${c}"><title>${r[0]} · ${lab}: ${fmt(v)}${withSd?" ± "+fmt(sd):""}</title></rect>`;
+      if(withSd&&sd>0){const y1=Tp+ih-Math.min(ih,((v+sd)/max)*ih), y2=Tp+ih-Math.max(0,((v-sd)/max)*ih), cx=x+bw/2;
+        s+=`<line x1="${cx}" x2="${cx}" y1="${y1}" y2="${y2}" stroke="${ink}" stroke-width="1"/><line x1="${cx-3}" x2="${cx+3}" y1="${y1}" y2="${y1}" stroke="${ink}" stroke-width="1"/><line x1="${cx-3}" x2="${cx+3}" y1="${y2}" y2="${y2}" stroke="${ink}" stroke-width="1"/>`;}
+    });
+    s+=`<text x="${L+i*gw+gw/2}" y="${Tp+ih+16}" font-size="10.5" text-anchor="middle" fill="${ink}" font-family="IBM Plex Mono,monospace">${r[0]}</text>`;
+  });
+  s+=`<line x1="${L}" x2="${W-R}" y1="${Tp+ih}" y2="${Tp+ih}" stroke="${ink}"/>`;
+  svg.innerHTML=s;
+}
+function renderCharts(){
+  bars("ch-d-tto",OUT.DOBOT,r=>[r[5],r[6],r[10],r[11]],2400,mmss,[0,600,1200,1800,2400],true);
+  bars("ch-d-oss",OUT.DOBOT,r=>[r[3],r[4],r[8],r[9]],1,v=>v.toFixed(1),[0,.5,1],false);
+  bars("ch-p-tto",OUT.PiPER,r=>[r[5],r[6],r[10],r[11]],1800,mmss,[0,600,1200,1800],true);
+  bars("ch-p-oss",OUT.PiPER,r=>[r[3],r[4],r[8],r[9]],1,v=>v.toFixed(1),[0,.5,1],false);
+}
+renderCharts();
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change",renderCharts);
+
+/* ---------- copy bibtex ---------- */
+document.getElementById("copybtn").addEventListener("click",async e=>{
+  try{await navigator.clipboard.writeText(document.getElementById("bib").textContent);e.target.textContent="Copied";setTimeout(()=>e.target.textContent="Copy",1500);}catch(_){e.target.textContent="Select and copy";}
+});
+</script>
+</body>
+</html>
