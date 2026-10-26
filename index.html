@@ -2,6 +2,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SPINE</title>
 <meta name="description" content="SPINE: Bridging the Cyber-Physical Gap with Agentic AI. An agentic framework that debugs and deploys bimanual robots for teleoperation.">
+<meta name="color-scheme" content="light">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://magics-lab.github.io/SPINE-web/">
+<meta property="og:title" content="SPINE: Bridging the Cyber-Physical Gap with Agentic AI">
+<meta property="og:description" content="An agentic framework that debugs and restores teleoperation on bimanual robots. Novice-operated SPINE resolved every implanted fault on DOBOT X-Trainer and AgileX PiPER and cut time-to-teleoperation by 30% and 38%.">
+<meta property="og:image" content="https://magics-lab.github.io/SPINE-web/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SPINE: Bridging the Cyber-Physical Gap with Agentic AI">
+<meta name="twitter:description" content="An agentic framework that debugs and restores teleoperation on bimanual robots.">
+<meta name="twitter:image" content="https://magics-lab.github.io/SPINE-web/assets/og.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -9,16 +21,7 @@
 :root{
   --bg:#FFFFFF; --ink:#1B1B1B; --ink-2:#4A4A4A; --ink-3:#767676; --rule:#D9D9D9; --rule-2:#EBEBEB; --soft:#F5F5F5;
   --link:#1A4FB4; --spine:#1A4FB4; --human:#9A9A9A;
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --bg:#121212; --ink:#E8E8E8; --ink-2:#B8B8B8; --ink-3:#8A8A8A; --rule:#3A3A3A; --rule-2:#262626; --soft:#1C1C1C;
-    --link:#8FB0FF; --spine:#8FB0FF; --human:#6A6A6A;
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#121212; --ink:#E8E8E8; --ink-2:#B8B8B8; --ink-3:#8A8A8A; --rule:#3A3A3A; --rule-2:#262626; --soft:#1C1C1C;
-  --link:#8FB0FF; --spine:#8FB0FF; --human:#6A6A6A;
+  color-scheme:light;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -30,8 +33,9 @@ code,pre,.mono{font-family:"IBM Plex Mono",Menlo,Consolas,monospace}
 code{font-size:.92em;background:var(--soft);padding:1px 5px;border-radius:3px}
 h1,h2,h3{margin:0;line-height:1.2;text-wrap:balance;font-weight:600;letter-spacing:-.01em}
 p{margin:0}
-.col{max-width:820px;margin:0 auto}
-.wide{max-width:1040px;margin:0 auto}
+html,body{background:#FFFFFF}
+/* one column width for text, figures and tables */
+.col,.wide{max-width:940px;margin:0 auto}
 section{padding-block:30px}
 section + section{border-top:1px solid var(--rule-2)}
 h2{font-size:26px;margin-bottom:14px}
@@ -84,7 +88,7 @@ tr.total td{border-top:1px solid var(--ink);font-weight:600}
 tr.plat td{font-style:italic;color:var(--ink-2);border-top:1px solid var(--rule)}
 .tbl caption{caption-side:top;text-align:left;font-size:14.5px;color:var(--ink-2);padding:0 0 8px;line-height:1.5}
 .tbl caption b{color:var(--ink);font-weight:600}
-.key{max-width:820px;margin:24px auto 0}
+.key{margin:24px auto 0}
 .key table{font-size:15.5px}
 td.id{white-space:nowrap;font-family:"IBM Plex Mono",Menlo,monospace;font-size:13.5px}
 /* ---------- charts ---------- */
@@ -113,6 +117,7 @@ footer{border-top:1px solid var(--rule-2);padding-block:28px 40px;font-size:14px
   <p class="affil"><sup>1</sup>Department of Statistics and Data Science, Northwestern University &nbsp; <sup>2</sup>Department of Computer Science, Northwestern University<br><sup>*</sup>Equal contribution, alphabetical by last name &nbsp; <sup>†</sup>Correspondence: <a href="mailto:hanliu@northwestern.edu">hanliu@northwestern.edu</a></p>
   <div class="links">
     <a href="assets/SPINE-2026.pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 3h8l5 5v13H6z"/><path d="M14 3v5h5M9 13h7M9 17h7"/></svg>Paper</a>
+    <a href="https://arxiv.org/abs/2607.13049"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 19L12 5l7 14M8 13h8"/></svg>arXiv</a>
     <a class="dis" href="#code" title="Repository link will be added on release"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M8 9l-4 3 4 3M16 9l4 3-4 3M14 5l-4 14"/></svg>Code (coming soon)</a>
     <a href="#bibtex"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 7h10M7 12h10M7 17h6"/></svg>BibTeX</a>
   </div>
@@ -120,20 +125,21 @@ footer{border-top:1px solid var(--rule-2);padding-block:28px 40px;font-size:14px
 
 <div class="wide teaser">
   <div class="pair">
-    <figure><img src="assets/dobot.jpg" alt="DOBOT X-Trainer bimanual teleoperation platform seen from above"><figcaption><b>DOBOT X-Trainer.</b> Two follower arms, two leader arms, RealSense cameras and a vendor SDK over static Ethernet. Seven scenarios.</figcaption></figure>
-    <figure><img src="assets/piper.jpg" alt="AgileX PiPER bimanual platform"><figcaption><b>AgileX PiPER.</b> Four PiPER 6-DOF arms on ROS Noetic with USB-to-CAN adapters and RealSense cameras. Five scenarios.</figcaption></figure>
+    <figure><img src="assets/dobot.jpg" alt="DOBOT X-Trainer bimanual teleoperation platform seen from above"><figcaption><b>(a) DOBOT X-Trainer.</b> Two follower arms, two leader arms, RealSense cameras and a vendor SDK over static Ethernet. Seven scenarios.</figcaption></figure>
+    <figure><img src="assets/piper.jpg" alt="AgileX PiPER bimanual platform"><figcaption><b>(b) AgileX PiPER.</b> Four PiPER 6-DOF arms on ROS Noetic with USB-to-CAN adapters and RealSense cameras. Five scenarios.</figcaption></figure>
   </div>
+  <p class="muted" style="margin-top:10px"><b style="color:var(--ink);font-weight:600">Figure 1.</b> Bimanual robot platforms used in the evaluation.</p>
 </div>
 
 <section class="col" id="abstract">
   <h2>Abstract</h2>
   <div class="text">
     <p>Foundation models give robots powerful high-level reasoning, yet turning that intelligence into reliable physical action remains difficult: roboticists must still align device drivers, network interfaces, sensors, controllers, and safety constraints for each platform. This often-overlooked integration layer acts as the robot's spinal cord, translating high-level intent into coordinated physical behavior, and remains a primary bottleneck for scalable Embodied AI. Hence, we propose SPINE (Scalable Physical Integration with ageNtic Expertise), an agentic framework for systematically debugging and deploying bimanual robots for teleoperation. SPINE centers on two subagent-driven workflows: a profile builder that compiles robot-specific context and a debugger that uses that context to iterate through diagnosis, repair, and validation until teleoperation succeeds.</p>
-    <p>Across two bimanual robots and 12 debugging scenarios, novice-operated SPINE debugged more accurately and efficiently than expert operators using vanilla LLMs. On DOBOT X-Trainer, SPINE improved success from 76% to 100% and reduced mean time-to-teleoperation by 30%; on AgileX PiPER, SPINE also achieved 100% success and reduced mean time-to-teleoperation by 38%. Together, these results show that SPINE leverages agentic AI to solve a critical integration bottleneck, helping bridge the cyber-physical gap that limits scalable real-world embodied AI.</p>
+    <p>Across two bimanual robot platforms and 12 debugging scenarios, novice-operated SPINE achieved more complete and efficient recovery than human operators using Claude Code. On DOBOT X-Trainer, SPINE improved success from 76% to 100% and reduced mean time-to-teleoperation by 30%; on AgileX PiPER, SPINE also achieved 100% success and reduced mean time-to-teleoperation by 38%. These results show that structured agentic debugging can address a key cyber-physical integration bottleneck in real-world robot deployment.</p>
   </div>
   <div class="tbl key">
     <table>
-      <caption><b>Overall outcomes.</b> OSS is the fraction of implanted faults resolved per trial; TTO is time-to-teleoperation and includes unsuccessful trials. Human operators use Claude Code with the same language model but without SPINE.</caption>
+      <caption><b>Overall outcomes.</b> OSS is the fraction of implanted faults resolved per trial; TTO is time-to-teleoperation and includes unsuccessful trials. Human operators use standard Claude Code with Claude Sonnet 5.0, the same underlying model, but without SPINE.</caption>
       <thead><tr><th>Platform</th><th>Condition</th><th class="n">Trials</th><th class="n">OSS</th><th class="n">Mean TTO</th></tr></thead>
       <tbody>
         <tr class="spine"><td>DOBOT X-Trainer</td><td>SPINE, novice operator</td><td class="n">3 × 7</td><td class="n best">1.00</td><td class="n best">10:20</td></tr>
@@ -148,12 +154,19 @@ footer{border-top:1px solid var(--rule-2);padding-block:28px 40px;font-size:14px
 <section class="wide" id="method">
   <div class="col"><h2>Method</h2>
   <div class="text">
-    <p>SPINE runs inside Claude Code as two skills. <b>Profile building</b> compiles documentation, a known-good repository and operator-confirmed facts into a sealed robot profile: eight category files plus a manifest, from which runtime adapters derive operating contracts, executable probes and readiness checks, hardware playbooks, and a command graph of the teleoperation pipeline. Nine extraction subagents draft it in parallel; curators, an adjudicator and a deterministic profile doctor check it before it is sealed.</p>
-    <p><b>Debugging</b> is an observe–triage–repair–verify loop. Observation consolidates failures into a blocker ledger. Triage dispatches four read-only diagnostic subagents in one parallel call and adjudicates their reports into a fixability split. Repair applies either one software edit or one operator action from a component-specific playbook. Verification reruns the live teleoperation pipeline and hidden readiness checks together; a case closes only when both pass in the same cycle, and incident memory keeps only fixes backed by a passed validation record.</p>
+    <p>SPINE runs within Claude Code as two skills on a Python backend. <code>/spine-profile-build</code> constructs robot-specific context, and <code>/spine-debug</code> uses that context to restore teleoperation. The skills define procedures, permitted tools and delegation rules; the backend manages execution, persistent state and validation. The main agent selects interventions, but successful completion requires execution evidence checked by the backend.</p>
   </div></div>
   <figure class="fig1" style="margin-top:22px">
-    <img src="assets/figure1.png" alt="SPINE architecture: persistent robot context (robot evidence, robot profile, validated memory) grounds a four-stage loop of observe, triage, repair and verify; unresolved cases return new evidence to triage.">
-    <figcaption><b>Figure 1.</b> SPINE separates persistent robot knowledge from a goal-conditioned recovery loop. Triage dispatches four read-only diagnostic sub-agents in one parallel call and adjudicates their reports into a fixability split; repair is a separate stage that applies either a software edit or one operator action. Verification reruns the live teleoperation pipeline and hidden readiness checks together, and unresolved cases return to triage with new evidence rather than restarting observation.</figcaption>
+    <img src="assets/figure1.png" alt="SPINE debugging workflow: persistent robot context (robot evidence, robot profile, validated memory) grounds a four-stage loop of observe, triage, repair and verify; unresolved cases return new evidence to triage.">
+    <figcaption><b>Figure 2.</b> SPINE debugging workflow. It separates persistent robot knowledge from a goal-conditioned recovery loop. Triage dispatches four read-only diagnostic sub-agents in one parallel call and adjudicates their reports into a fixability split; repair is a separate stage that applies either a software edit or one operator action. Verification reruns the live teleoperation pipeline and hidden readiness checks together, and unresolved cases return to triage with new evidence rather than restarting observation.</figcaption>
+  </figure>
+  <div class="text" style="margin-top:26px">
+    <p><b>Profile building.</b> The operator supplies documentation, a known-good repository and setup facts. Nine extraction subagents work in parallel: eight cover robot identity, components, interfaces, software, configuration, procedures, safety and diagnostics, and the ninth reconstructs the teleoperation pipeline. The resulting profile holds eight category files and a manifest, exposed as contracts, probes and readiness checks, hardware playbooks, and a command graph of the teleoperation pipeline. The operator confirms the command graph, interfaces, playbooks and hidden readiness checks. Nine curator subagents and an adjudicator review the profile against its evidence, and a deterministic profile doctor checks it before it is sealed.</p>
+    <p><b>Debugging.</b> <code>debug start</code> collects live evidence through the declared pipeline and records active failures in a blocker ledger. Four read-only subagents examine terminal evidence, software and configuration deviations, hardware visibility, and readiness-check relevance in parallel. The agent then applies a software repair through <code>debug after-fix</code> or presents one physical action from a hardware playbook through <code>debug continue</code>. <code>debug finish</code> closes a case only when the live teleoperation pipeline and hidden readiness checks both pass in the same latest cycle. <code>/spine-closeout</code> stores the incident, and memory keeps a fix as resolved only with a passing validation record.</p>
+  </div>
+  <figure class="fig1" style="margin-top:22px">
+    <img src="assets/system.png" alt="SPINE system overview: setup inputs feed /spine-profile-build, which produces a robot profile; /spine-debug uses the profile with runtime inputs through start, after-fix, continue and finish, supported by /spine-check and /spine-closeout.">
+    <figcaption><b>Figure 3.</b> SPINE system overview. The profile builder compiles robot-specific context, while the debugger combines this context with live evidence and incident memory to coordinate software repairs, guide physical interventions, and verify teleoperation readiness.</figcaption>
   </figure>
 </section>
 
@@ -169,6 +182,7 @@ footer{border-top:1px solid var(--rule-2);padding-block:28px 40px;font-size:14px
 
   <div class="col">
   <h3>DOBOT X-Trainer</h3>
+  <div class="text"><p>SPINE resolved every implanted fault, raising OSS from 0.76 to 1.00, and cut mean time-to-teleoperation from 14:51 to 10:20 (30%). The success gain came entirely from software-only and hybrid scenarios; both conditions resolved all hardware-only faults. SPINE was faster in six of seven scenarios. On D-HY1 it took longer (14:55 vs. 11:55) but resolved all faults, where human operators averaged 0.64.</p></div>
   <div class="charts">
     <div class="chart"><h4>Time-to-teleoperation</h4><p class="muted">mm:ss, mean with SD, lower is better</p><svg id="ch-d-tto" viewBox="0 0 400 250" role="img" aria-label="DOBOT time-to-teleoperation per scenario"></svg></div>
     <div class="chart"><h4>Faults resolved (OSS)</h4><p class="muted">mean fraction of implanted faults</p><svg id="ch-d-oss" viewBox="0 0 400 250" role="img" aria-label="DOBOT faults resolved per scenario"></svg></div>
@@ -179,6 +193,7 @@ footer{border-top:1px solid var(--rule-2);padding-block:28px 40px;font-size:14px
 
   <div class="col">
   <h3>AgileX PiPER</h3>
+  <div class="text"><p>Human operators already resolved nearly all faults (OSS 0.99), so SPINE's main advantage was speed: it was faster in every scenario and cut mean time-to-teleoperation from 12:30 to 7:48 (38%). The largest reduction came on P-HW1, disconnected camera and CAN links, from 13:36 to 2:45, about 80%.</p></div>
   <div class="charts">
     <div class="chart"><h4>Time-to-teleoperation</h4><p class="muted">mm:ss, mean with SD, lower is better</p><svg id="ch-p-tto" viewBox="0 0 400 250" role="img" aria-label="PiPER time-to-teleoperation per scenario"></svg></div>
     <div class="chart"><h4>Faults resolved (OSS)</h4><p class="muted">mean fraction of implanted faults</p><svg id="ch-p-oss" viewBox="0 0 400 250" role="img" aria-label="PiPER faults resolved per scenario"></svg></div>
@@ -194,7 +209,12 @@ footer{border-top:1px solid var(--rule-2);padding-block:28px 40px;font-size:14px
 
 <section class="col" id="code">
   <h2>Code</h2>
-  <div class="text"><p>The framework is released as open source. The repository link will be added here on release.</p></div>
+  <div class="text"><p>The repository link will be added here on release.</p></div>
+</section>
+
+<section class="col" id="ack">
+  <h2>Acknowledgements</h2>
+  <div class="text"><p>We thank Guo Ye, Jihai Zhao, Tony Dong, Jiale Chen, Vincent Cheng, Soyeon Park, Dennis Wu, Hongyu Chen, Donggyun Lee, and Mingxian Wang, who volunteered as human operators in our experiments and/or ran experiments for the SPINE agent. We also thank Guo Ye for the numerous conversations about the design of SPINE, which helped inspire certain elements of it.</p></div>
 </section>
 
 <section class="col" id="bibtex">
@@ -202,6 +222,7 @@ footer{border-top:1px solid var(--rule-2);padding-block:28px 40px;font-size:14px
 <pre class="bib" id="bib">@article{ham2026spine,
   title={SPINE: Bridging the Cyber-Physical Gap with Agentic AI},
   author={Ham, Minkyu and Kim, Dongho and Lee, Chan and Kim, Min Jun and Zhang, Yixi and Wang, Jiayi and Liu, Han},
+  journal={arXiv preprint arXiv:2607.13049},
   year={2026}
 }</pre>
 </section>
@@ -297,7 +318,6 @@ function renderCharts(){
   bars("ch-p-oss",OUT.PiPER,r=>[r[3],r[4],r[8],r[9]],1,v=>v.toFixed(1),[0,.5,1],false);
 }
 renderCharts();
-matchMedia("(prefers-color-scheme: dark)").addEventListener("change",renderCharts);
 
 /* ---------- copy bibtex ---------- */
 document.getElementById("copybtn").addEventListener("click",async e=>{
