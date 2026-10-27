@@ -16,100 +16,169 @@
 <meta name="twitter:image" content="https://magics-lab.github.io/SPINE-web/assets/og.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,600..800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 :root{
-  --bg:#FFFFFF; --ink:#1B1B1B; --ink-2:#4A4A4A; --ink-3:#767676; --rule:#D9D9D9; --rule-2:#EBEBEB; --soft:#F5F5F5;
-  --link:#1A4FB4; --spine:#1A4FB4; --human:#9A9A9A;
+  --bg:#FFFFFF; --ink:#14213D; --ink-2:#47536B; --ink-3:#7B859A; --rule:#D3DAE6; --rule-2:#E7EBF2; --soft:#F3F6FB;
+  --link:#1F5FBF; --spine:#1F5FBF; --spine-dk:#174A96; --spine-tint:#EDF3FC; --human:#B3BAC7;
+  --observe:#D9731A; --triage:#1F5FBF; --repair:#6A4BC4; --verify:#138A63;
   color-scheme:light;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;padding-inline:20px}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+html,body{background:#FFFFFF}
+body{margin:0;color:var(--ink);font-family:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;padding-inline:20px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 a{color:var(--link);text-decoration:none}
 a:hover{text-decoration:underline}
 code,pre,.mono{font-family:"IBM Plex Mono",Menlo,Consolas,monospace}
-code{font-size:.92em;background:var(--soft);padding:1px 5px;border-radius:3px}
-h1,h2,h3{margin:0;line-height:1.2;text-wrap:balance;font-weight:600;letter-spacing:-.01em}
+code{font-size:.86em;background:var(--spine-tint);color:var(--spine-dk);padding:1px 6px;border-radius:4px}
+h1,h2,h3{margin:0;line-height:1.2;text-wrap:balance;letter-spacing:-.01em}
 p{margin:0}
-html,body{background:#FFFFFF}
 /* one column width for text, figures and tables */
 .col,.wide{max-width:940px;margin:0 auto}
-section{padding-block:30px}
+section{padding-block:44px}
 section + section{border-top:1px solid var(--rule-2)}
-h2{font-size:26px;margin-bottom:14px}
-h3{font-size:18px;margin:26px 0 8px}
-.text p + p{margin-top:12px}
+h2{font-family:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;font-weight:650;font-size:34px;letter-spacing:-.012em;font-variation-settings:"wdth" 94,"opsz" 48;margin-bottom:16px;color:var(--ink)}
+h3{font-size:20px;font-weight:600;margin:36px 0 10px}
+.text p + p{margin-top:14px}
+.text b{font-weight:600}
 .muted{color:var(--ink-3);font-size:14.5px}
 /* ---------- header ---------- */
-header{text-align:center;padding-block:56px 20px}
-.wordmark{display:flex;justify-content:center;gap:.16em;font-family:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;font-weight:800;font-size:clamp(64px,11vw,124px);line-height:.95;letter-spacing:-.04em;font-variation-settings:"wdth" 82,"opsz" 96;color:var(--ink)}
+header{text-align:center;padding-block:64px 24px}
+.wordmark{display:flex;justify-content:center;gap:.14em;font-family:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;font-weight:800;font-size:clamp(68px,12vw,136px);line-height:.92;letter-spacing:-.04em;font-variation-settings:"wdth" 82,"opsz" 96;color:var(--ink)}
 .wordmark span{display:inline-block;animation:rise .7s cubic-bezier(.2,.8,.2,1) both}
 .wordmark span:nth-child(2){animation-delay:.06s}.wordmark span:nth-child(3){animation-delay:.12s}.wordmark span:nth-child(4){animation-delay:.18s}.wordmark span:nth-child(5){animation-delay:.24s}
 @keyframes rise{from{transform:translateY(.3em);opacity:0}to{transform:none;opacity:1}}
-.expand{margin-top:14px;font-size:clamp(15px,1.5vw,18px);color:var(--ink-2);letter-spacing:.01em}
-.expand b{color:var(--link);font-weight:600}
-header h1{font-size:clamp(24px,3vw,32px);font-weight:500;margin-top:44px;color:var(--ink)}
-.authors{margin-top:26px;font-size:17px;line-height:1.7}
+.expand{margin-top:16px;font-size:clamp(15px,1.6vw,19px);color:var(--ink-2);letter-spacing:.01em}
+.expand b{color:var(--spine);font-weight:600}
+/* the four-stage debugging loop, colour-matched to Figure 2 */
+.loop{list-style:none;display:flex;justify-content:center;flex-wrap:wrap;gap:6px 0;margin:26px 0 0;padding:0}
+.loop li{display:flex;align-items:center;font-family:"IBM Plex Mono",Menlo,monospace;font-size:12.5px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--c)}
+.loop li span{padding:5px 2px 6px;border-top:3px solid var(--c);min-width:84px}
+.loop li + li::before{content:"→";color:var(--ink-3);padding:0 12px;font-family:"IBM Plex Sans",sans-serif;letter-spacing:0}
+@media(max-width:560px){.loop li{font-size:11px;letter-spacing:.05em}.loop li span{min-width:0;padding-inline:4px}.loop li + li::before{padding:0 5px}}
+header h1{font-size:clamp(25px,3.2vw,34px);font-weight:500;margin-top:40px;color:var(--ink)}
+.authors{margin-top:24px;font-size:17px;line-height:1.75}
 .authors span{white-space:nowrap}
 .authors sup{font-size:11px;color:var(--ink-3)}
 .affil{margin-top:8px;font-size:13.5px;color:var(--ink-2);line-height:1.6}
 .affil sup{font-size:11px;color:var(--ink-3)}
-.links{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:22px}
-.links a{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:var(--bg);padding:9px 18px;border-radius:999px;font-size:15px;font-weight:500}
-.links a:hover{text-decoration:none;opacity:.85}
+.links{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:26px}
+.links a{display:inline-flex;align-items:center;gap:8px;background:var(--spine);color:#fff;padding:10px 20px;border-radius:999px;font-size:15px;font-weight:500;transition:background .15s}
+.links a:hover{text-decoration:none;background:var(--spine-dk)}
 .links a.dis{background:transparent;color:var(--ink-3);border:1px solid var(--rule);cursor:default}
-.links a.dis:hover{opacity:1}
+.links a.dis:hover{background:transparent}
 .links svg{width:16px;height:16px}
 /* ---------- figures ---------- */
 figure{margin:0}
-figure img{display:block;width:100%;height:auto;max-width:100%}
-figcaption{margin-top:10px;font-size:14.5px;color:var(--ink-2);line-height:1.5}
+figure img{display:block;width:100%;height:auto;max-width:100%;border-radius:8px}
+figcaption{margin-top:12px;font-size:14.5px;color:var(--ink-2);line-height:1.55}
 figcaption b{color:var(--ink);font-weight:600}
-.teaser{padding-block:28px 40px}
+.teaser{padding-block:30px 44px}
 .pair{display:grid;grid-template-columns:4fr 3fr;gap:24px;align-items:start}
 @media(max-width:760px){.pair{grid-template-columns:1fr}}
 .pair img{border:1px solid var(--rule-2)}
 .fig1 img{border:1px solid var(--rule-2);background:#fff}
 /* ---------- tables (booktabs) ---------- */
-.tbl{overflow-x:auto;margin-top:24px}
+.tbl{overflow-x:auto;margin-top:26px}
 table{border-collapse:collapse;width:100%;font-size:15px;line-height:1.45}
-th,td{padding:7px 12px;text-align:left;vertical-align:top}
-th{font-weight:600;border-top:1.5px solid var(--ink);border-bottom:1px solid var(--ink);white-space:nowrap}
+th,td{padding:8px 12px;text-align:left;vertical-align:top}
+th{font-weight:600;border-top:2px solid var(--ink);border-bottom:1px solid var(--ink);white-space:nowrap}
 th.sub{border-top:0;font-weight:500;color:var(--ink-3);font-size:13px;padding-top:2px}
-tbody tr:last-child td{border-bottom:1.5px solid var(--ink)}
+th.grp-s{color:var(--spine)}
+tbody tr:last-child td{border-bottom:2px solid var(--ink)}
 td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 td.best{font-weight:600}
 td .sd{color:var(--ink-3);font-weight:400}
-tr.spine td{background:var(--soft)}
+tr.spine td{background:var(--spine-tint)}
+tr.spine td.best{color:var(--spine-dk)}
 tr.group td{border-top:1px solid var(--rule)}
 tr.total td{border-top:1px solid var(--ink);font-weight:600}
-tr.plat td{font-style:italic;color:var(--ink-2);border-top:1px solid var(--rule)}
-.tbl caption{caption-side:top;text-align:left;font-size:14.5px;color:var(--ink-2);padding:0 0 8px;line-height:1.5}
+tr.plat td{font-style:italic;color:var(--ink-2);border-top:1px solid var(--rule);padding-top:12px}
+.tbl caption{caption-side:top;text-align:left;font-size:14.5px;color:var(--ink-2);padding:0 0 10px;line-height:1.55}
 .tbl caption b{color:var(--ink);font-weight:600}
-.key{margin:24px auto 0}
+.key{margin:28px auto 0}
 .key table{font-size:15.5px}
-td.id{white-space:nowrap;font-family:"IBM Plex Mono",Menlo,monospace;font-size:13.5px}
+td.id{white-space:nowrap;font-family:"IBM Plex Mono",Menlo,monospace;font-size:13.5px;color:var(--ink-2)}
+.cls{display:inline-block;font-family:"IBM Plex Mono",Menlo,monospace;font-size:12px;font-weight:500;padding:2px 9px;border-radius:999px;white-space:nowrap}
+.cls.SW{color:#1A55AD;background:#EAF1FC}.cls.HW{color:#A9560F;background:#FCF0E4}.cls.HY{color:#573AB0;background:#F0ECFB}
 /* ---------- charts ---------- */
-.charts{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:14px}
+.charts{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:18px}
 @media(max-width:760px){.charts{grid-template-columns:1fr}}
 .chart h4{margin:0 0 2px;font-size:15px;font-weight:600}
 .chart .muted{margin-bottom:6px}
 .chart svg{width:100%;height:auto;display:block}
-.legend{display:flex;gap:18px;font-size:14px;color:var(--ink-2);margin-top:6px}
-.legend i{display:inline-block;width:10px;height:10px;margin-right:6px;vertical-align:-1px}
+.legend{display:flex;gap:18px;font-size:14px;color:var(--ink-2);margin-top:8px}
+.legend i{display:inline-block;width:10px;height:10px;margin-right:6px;vertical-align:-1px;border-radius:2px}
 /* ---------- bibtex ---------- */
-pre.bib{margin:10px 0 0;background:var(--soft);border:1px solid var(--rule-2);padding:10px 14px;border-radius:4px;font-size:12.5px;line-height:1.45;overflow-x:auto;white-space:pre-wrap;word-break:break-word;color:var(--ink)}
-.copy{font:inherit;font-size:14px;padding:5px 12px;border:1px solid var(--rule);background:var(--bg);color:var(--ink);border-radius:4px;cursor:pointer}
-.copy:focus-visible,.links a:focus-visible{outline:2px solid var(--link);outline-offset:2px}
+pre.bib{margin:12px 0 0;background:var(--soft);border:1px solid var(--rule-2);padding:12px 16px;border-radius:8px;font-size:12.5px;line-height:1.5;overflow-x:auto;white-space:pre-wrap;word-break:break-word;color:var(--ink)}
+.copy{font:inherit;font-size:14px;padding:6px 14px;border:1px solid var(--rule);background:#fff;color:var(--ink);border-radius:999px;cursor:pointer}
+.copy:hover{border-color:var(--spine);color:var(--spine)}
+.copy:focus-visible,.links a:focus-visible,.spine-nav a:focus-visible{outline:2px solid var(--link);outline-offset:2px}
 .bibhead{display:flex;justify-content:space-between;align-items:center;gap:12px}
 footer{border-top:1px solid var(--rule-2);padding-block:28px 40px;font-size:14px;color:var(--ink-3);text-align:center}
+/* ---------- section nav drawn as a spinal column (wide screens only) ---------- */
+.spine-nav{display:none}
+@media(min-width:1320px){
+  .spine-nav{display:block;position:fixed;top:50%;transform:translateY(-50%);left:max(24px,calc((100vw - 940px)/2 - 200px));width:150px;opacity:0;transition:opacity .3s}
+  .spine-nav.show{opacity:1}
+  .spine-nav::before{content:"";position:absolute;left:7px;top:10px;bottom:10px;width:2px;background:var(--rule-2)}
+  .spine-nav a{position:relative;display:block;padding:9px 0 9px 28px;font-family:"IBM Plex Mono",Menlo,monospace;font-size:12.5px;letter-spacing:.04em;color:var(--ink-3);transition:color .2s}
+  .spine-nav a::before{content:"";position:absolute;left:0;top:50%;width:16px;height:10px;margin-top:-5px;border-radius:4px;background:#fff;border:2px solid var(--rule);transition:background .2s,border-color .2s,width .2s}
+  .spine-nav a:hover{color:var(--ink);text-decoration:none}
+  .spine-nav a.on{color:var(--ink);font-weight:500}
+  .spine-nav a.on::before{background:var(--spine);border-color:var(--spine)}
+}
+/* ---------- wordmark: the I is a stack of four vertebrae ---------- */
+.wordmark{align-items:flex-end}
+.wordmark .vert{display:inline-flex;flex-direction:column;justify-content:space-between;width:.19em;height:.648em;margin:0 .03em .124em;animation:none}
+.vert i{display:block;height:21%;border-radius:.035em;background:var(--c);animation:stack .5s cubic-bezier(.2,.8,.2,1) both}
+.vert i:nth-child(1){animation-delay:.45s}.vert i:nth-child(2){animation-delay:.35s}.vert i:nth-child(3){animation-delay:.25s}.vert i:nth-child(4){animation-delay:.15s}
+@keyframes stack{from{transform:translateY(-.4em);opacity:0}to{transform:none;opacity:1}}
+/* ---------- results at a glance ---------- */
+section.glance{padding-block:40px 44px;border-top:0}
+.glance-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px 56px}
+@media(max-width:760px){.glance-grid{grid-template-columns:1fr}}
+.plat-res h3{margin:0 0 6px;font-size:19px}
+.plat-res h3 .muted{font-weight:400}
+.metric{margin-top:16px}
+.mlabel{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);margin-bottom:8px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.delta{font-size:12.5px;letter-spacing:.02em;text-transform:none;color:#fff;background:var(--verify);padding:2px 10px;border-radius:999px;font-weight:600}
+.bar{display:grid;grid-template-columns:150px 1fr 56px;align-items:center;gap:12px;margin-top:6px;font-size:14.5px}
+.bar .who{color:var(--ink-2)}
+.bar.s .who{color:var(--spine-dk);font-weight:600}
+.track{height:14px;background:var(--soft);border-radius:999px;overflow:hidden}
+.track b{display:block;height:100%;width:0;border-radius:999px;transition:width 1.1s cubic-bezier(.2,.8,.2,1)}
+.glance.in .track b{width:var(--w)}
+.bar.s .track b{background:linear-gradient(90deg,var(--spine),#3B7BE0)}
+.bar.h .track b{background:var(--human)}
+.bar .val{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+.bar.s .val{color:var(--spine-dk)}
+.glance-note{margin-top:22px;line-height:1.55}
+@media(max-width:480px){.bar{grid-template-columns:96px 1fr 48px;gap:8px;font-size:13.5px}}
+/* ---------- method stages ---------- */
+.stages{list-style:none;padding:0;margin:28px 0 0;display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+@media(max-width:760px){.stages{grid-template-columns:1fr 1fr}}
+@media(max-width:440px){.stages{grid-template-columns:1fr}}
+.stages li{border-top:4px solid var(--c);padding-top:12px}
+.stages .sn{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--c);color:#fff;font-size:13px;font-weight:600;margin-bottom:6px}
+.stages h4{margin:0 0 4px;font-size:17px;color:var(--c);font-weight:600}
+.stages p{font-size:14.5px;line-height:1.5;color:var(--ink-2)}
+/* ---------- section headings carry a vertebra ---------- */
+h2::before{content:"";display:inline-block;width:.42em;height:.3em;border-radius:.09em;background:var(--spine);margin-right:.32em;vertical-align:.12em}
 </style>
 
+<nav class="spine-nav" aria-label="Sections">
+  <a href="#abstract">Abstract</a><a href="#method">Method</a><a href="#bugs">Scenarios</a><a href="#results">Results</a><a href="#ablation">Ablation</a><a href="#bibtex">BibTeX</a>
+</nav>
+
 <header class="col">
-  <div class="wordmark" aria-hidden="true"><span>S</span><span>P</span><span>I</span><span>N</span><span>E</span></div>
+  <div class="wordmark" aria-hidden="true"><span>S</span><span>P</span><span class="vert"><i style="--c:var(--observe)"></i><i style="--c:var(--triage)"></i><i style="--c:var(--repair)"></i><i style="--c:var(--verify)"></i></span><span>N</span><span>E</span></div>
   <p class="expand"><b>S</b>calable <b>P</b>hysical <b>I</b>ntegration with age<b>N</b>tic <b>E</b>xpertise</p>
+  <ol class="loop" aria-label="SPINE debugging loop">
+    <li style="--c:var(--observe)"><span>Observe</span></li><li style="--c:var(--triage)"><span>Triage</span></li><li style="--c:var(--repair)"><span>Repair</span></li><li style="--c:var(--verify)"><span>Verify</span></li>
+  </ol>
   <h1>SPINE: Bridging the Cyber‑Physical Gap with Agentic AI</h1>
   <p class="authors">
     <span>Minkyu Ham<sup>1,*</sup></span>, <span>Dongho Kim<sup>1,*</sup></span>, <span>Chan Lee<sup>1,*</sup></span>, <span>Min Jun Kim<sup>1</sup></span>, <span>Yixi Zhang<sup>2</sup></span>, <span>Jiayi Wang<sup>2</sup></span>, <span>Han Liu<sup>1,2,†</sup></span>
@@ -122,6 +191,34 @@ footer{border-top:1px solid var(--rule-2);padding-block:28px 40px;font-size:14px
     <a href="#bibtex"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 7h10M7 12h10M7 17h6"/></svg>BibTeX</a>
   </div>
 </header>
+
+<section class="col glance" id="glance" aria-label="Results at a glance">
+  <div class="glance-grid">
+    <div class="plat-res">
+      <h3>DOBOT X-Trainer <span class="muted">· 7 scenarios</span></h3>
+      <div class="metric"><div class="mlabel">Faults resolved</div>
+        <div class="bar s"><span class="who">SPINE</span><span class="track"><b style="--w:100%"></b></span><span class="val">100%</span></div>
+        <div class="bar h"><span class="who">Human + Claude Code</span><span class="track"><b style="--w:76%"></b></span><span class="val">76%</span></div>
+      </div>
+      <div class="metric"><div class="mlabel">Mean time to teleoperation <span class="delta">30% faster</span></div>
+        <div class="bar s"><span class="who">SPINE</span><span class="track"><b style="--w:69.6%"></b></span><span class="val">10:20</span></div>
+        <div class="bar h"><span class="who">Human + Claude Code</span><span class="track"><b style="--w:100%"></b></span><span class="val">14:51</span></div>
+      </div>
+    </div>
+    <div class="plat-res">
+      <h3>AgileX PiPER <span class="muted">· 5 scenarios</span></h3>
+      <div class="metric"><div class="mlabel">Faults resolved</div>
+        <div class="bar s"><span class="who">SPINE</span><span class="track"><b style="--w:100%"></b></span><span class="val">100%</span></div>
+        <div class="bar h"><span class="who">Human + Claude Code</span><span class="track"><b style="--w:99%"></b></span><span class="val">99%</span></div>
+      </div>
+      <div class="metric"><div class="mlabel">Mean time to teleoperation <span class="delta">38% faster</span></div>
+        <div class="bar s"><span class="who">SPINE</span><span class="track"><b style="--w:62.4%"></b></span><span class="val">7:48</span></div>
+        <div class="bar h"><span class="who">Human + Claude Code</span><span class="track"><b style="--w:100%"></b></span><span class="val">12:30</span></div>
+      </div>
+    </div>
+  </div>
+  <p class="muted glance-note">A robotics novice running SPINE vs. human operators using standard Claude Code with the same model (Claude Sonnet 5.0). SPINE: 3 trials per scenario; humans: 7 operators on DOBOT, 9 on PiPER. Times include unsuccessful trials.</p>
+</section>
 
 <div class="wide teaser">
   <div class="pair">
@@ -137,25 +234,20 @@ footer{border-top:1px solid var(--rule-2);padding-block:28px 40px;font-size:14px
     <p>Foundation models give robots powerful high-level reasoning, yet turning that intelligence into reliable physical action remains difficult: roboticists must still align device drivers, network interfaces, sensors, controllers, and safety constraints for each platform. This often-overlooked integration layer acts as the robot's spinal cord, translating high-level intent into coordinated physical behavior, and remains a primary bottleneck for scalable Embodied AI. Hence, we propose SPINE (Scalable Physical Integration with ageNtic Expertise), an agentic framework for systematically debugging and deploying bimanual robots for teleoperation. SPINE centers on two subagent-driven workflows: a profile builder that compiles robot-specific context and a debugger that uses that context to iterate through diagnosis, repair, and validation until teleoperation succeeds.</p>
     <p>Across two bimanual robot platforms and 12 debugging scenarios, novice-operated SPINE achieved more complete and efficient recovery than human operators using Claude Code. On DOBOT X-Trainer, SPINE improved success from 76% to 100% and reduced mean time-to-teleoperation by 30%; on AgileX PiPER, SPINE also achieved 100% success and reduced mean time-to-teleoperation by 38%. These results show that structured agentic debugging can address a key cyber-physical integration bottleneck in real-world robot deployment.</p>
   </div>
-  <div class="tbl key">
-    <table>
-      <caption><b>Overall outcomes.</b> OSS is the fraction of implanted faults resolved per trial; TTO is time-to-teleoperation and includes unsuccessful trials. Human operators use standard Claude Code with Claude Sonnet 5.0, the same underlying model, but without SPINE.</caption>
-      <thead><tr><th>Platform</th><th>Condition</th><th class="n">Trials</th><th class="n">OSS</th><th class="n">Mean TTO</th></tr></thead>
-      <tbody>
-        <tr class="spine"><td>DOBOT X-Trainer</td><td>SPINE, novice operator</td><td class="n">3 × 7</td><td class="n best">1.00</td><td class="n best">10:20</td></tr>
-        <tr><td></td><td>Human operators with Claude Code</td><td class="n">7 × 7</td><td class="n">0.76</td><td class="n">14:51</td></tr>
-        <tr class="spine group"><td>AgileX PiPER</td><td>SPINE, novice operator</td><td class="n">3 × 5</td><td class="n best">1.00</td><td class="n best">7:48</td></tr>
-        <tr><td></td><td>Human operators with Claude Code</td><td class="n">9 × 5</td><td class="n">0.99</td><td class="n">12:30</td></tr>
-      </tbody>
-    </table>
-  </div>
 </section>
 
 <section class="wide" id="method">
   <div class="col"><h2>Method</h2>
   <div class="text">
     <p>SPINE runs within Claude Code as two skills on a Python backend. <code>/spine-profile-build</code> constructs robot-specific context, and <code>/spine-debug</code> uses that context to restore teleoperation. The skills define procedures, permitted tools and delegation rules; the backend manages execution, persistent state and validation. The main agent selects interventions, but successful completion requires execution evidence checked by the backend.</p>
-  </div></div>
+  </div>
+  <ol class="stages">
+    <li style="--c:var(--observe)"><span class="sn">1</span><h4>Observe</h4><p>Run the live teleoperation pipeline and hidden readiness checks; record active failures in a blocker ledger.</p></li>
+    <li style="--c:var(--triage)"><span class="sn">2</span><h4>Triage</h4><p>Four read-only subagents inspect terminal output, software and configuration, hardware, and readiness checks in parallel.</p></li>
+    <li style="--c:var(--repair)"><span class="sn">3</span><h4>Repair</h4><p>Apply one software edit, or guide the operator through one physical action from a hardware playbook.</p></li>
+    <li style="--c:var(--verify)"><span class="sn">4</span><h4>Verify</h4><p>Close only when the pipeline and readiness checks pass in the same cycle; otherwise return to triage.</p></li>
+  </ol>
+  </div>
   <figure class="fig1" style="margin-top:22px">
     <img src="assets/figure1.png" alt="SPINE debugging workflow: persistent robot context (robot evidence, robot profile, validated memory) grounds a four-stage loop of observe, triage, repair and verify; unresolved cases return new evidence to triage.">
     <figcaption><b>Figure 2.</b> SPINE debugging workflow. It separates persistent robot knowledge from a goal-conditioned recovery loop. Triage dispatches four read-only diagnostic sub-agents in one parallel call and adjudicates their reports into a fixability split; repair is a separate stage that applies either a software edit or one operator action. Verification reruns the live teleoperation pipeline and hidden readiness checks together, and unresolved cases return to triage with new evidence rather than restarting observation.</figcaption>
@@ -202,7 +294,7 @@ footer{border-top:1px solid var(--rule-2);padding-block:28px 40px;font-size:14px
   </div>
   <div class="tbl" id="tbl-piper"></div>
 
-  <div class="col"><h3>Ablation on DOBOT</h3>
+  <div class="col" id="ablation"><h3>Ablation on DOBOT</h3>
   <div class="text"><p>Removing the robot profile or the hardware playbook lowers fault resolution and lengthens debugging, with the losses concentrated in hardware-only and hybrid scenarios. Each ablated variant has one trial per scenario, so these are preliminary.</p></div></div>
   <div class="tbl" id="tbl-abl"></div>
 </section>
@@ -247,7 +339,7 @@ const SCEN=[
 ];
 const CLS={SW:"Software-only",HW:"Hardware-only",HY:"Hybrid"};
 document.getElementById("scen").innerHTML=`<table><caption><b>Table I. Injected debugging scenarios.</b> D/P denote DOBOT/PiPER.</caption><thead><tr><th>ID</th><th>Class</th><th>Description</th></tr></thead><tbody>${
-  ["DOBOT","PiPER"].map(p=>`<tr class="plat"><td colspan="3">${p==="DOBOT"?"DOBOT X-Trainer":"AgileX PiPER"}</td></tr>`+SCEN.filter(s=>s[2]===p).map(s=>`<tr><td class="id">${s[0]}</td><td style="white-space:nowrap">${CLS[s[1]]}</td><td>${s[3].map(f=>`<b>${f[0]}:</b> ${f[1]}`).join(" ")}</td></tr>`).join("")).join("")
+  ["DOBOT","PiPER"].map(p=>`<tr class="plat"><td colspan="3">${p==="DOBOT"?"DOBOT X-Trainer":"AgileX PiPER"}</td></tr>`+SCEN.filter(s=>s[2]===p).map(s=>`<tr><td class="id">${s[0]}</td><td><span class="cls ${s[1]}">${CLS[s[1]]}</span></td><td>${s[3].map(f=>`<b>${f[0]}:</b> ${f[1]}`).join(" ")}</td></tr>`).join("")).join("")
 }</tbody></table>`;
 
 /* ---------- Table II: outcomes ---------- */
@@ -277,14 +369,14 @@ function outTable(id,plat,caption){
   const rows=OUT[plat], o=OVERALL[plat];
   const body=rows.map(r=>`<tr><td class="id">${r[0]}</td><td>${r[1]}</td><td class="n">${r[2]}</td><td class="n ${r[3]>=r[8]?"best":""}">${pm(r[3],r[4],f2)}</td><td class="n ${r[5]<=r[10]?"best":""}">${pm(r[5],r[6],mmss)}</td><td class="n">${r[7]}</td><td class="n ${r[8]>=r[3]?"best":""}">${pm(r[8],r[9],f2)}</td><td class="n ${r[10]<=r[5]?"best":""}">${pm(r[10],r[11],mmss)}</td></tr>`).join("")
    +`<tr class="total"><td></td><td>Overall</td><td class="n"></td><td class="n">${pm(o[0],o[1],f2)}</td><td class="n">${pm(o[2],o[3],mmss)}</td><td class="n"></td><td class="n">${pm(o[4],o[5],f2)}</td><td class="n">${pm(o[6],o[7],mmss)}</td></tr>`;
-  document.getElementById(id).innerHTML=`<table><caption>${caption}</caption><thead><tr><th rowspan="2">ID</th><th rowspan="2">Description</th><th colspan="3" style="text-align:center;border-bottom:1px solid var(--rule)">SPINE</th><th colspan="3" style="text-align:center;border-bottom:1px solid var(--rule)">Human operators</th></tr><tr><th class="n sub">n</th><th class="n sub">OSS</th><th class="n sub">TTO</th><th class="n sub">n</th><th class="n sub">OSS</th><th class="n sub">TTO</th></tr></thead><tbody>${body}</tbody></table>`;
+  document.getElementById(id).innerHTML=`<table><caption>${caption}</caption><thead><tr><th rowspan="2">ID</th><th rowspan="2">Description</th><th colspan="3" class="grp-s" style="text-align:center;border-bottom:1px solid var(--rule)">SPINE</th><th colspan="3" style="text-align:center;border-bottom:1px solid var(--rule)">Human operators</th></tr><tr><th class="n sub">n</th><th class="n sub">OSS</th><th class="n sub">TTO</th><th class="n sub">n</th><th class="n sub">OSS</th><th class="n sub">TTO</th></tr></thead><tbody>${body}</tbody></table>`;
 }
 outTable("tbl-dobot","DOBOT","<b>Table II (DOBOT X-Trainer).</b> Bold marks the better value in a scenario.");
 outTable("tbl-piper","PiPER","<b>Table II (AgileX PiPER).</b> Bold marks the better value in a scenario.");
 
 /* ---------- Table III: ablation ---------- */
 const ABL=[["D-SW1",1.00,T(6,20),1.00,T(4,40),1.00,T(20,47)],["D-SW2",1.00,T(6,41),1.00,T(6,37),1.00,T(5,23)],["D-HW1",1.00,T(13,35),1.00,T(11,1),0.00,T(45,0)],["D-HW2",1.00,T(9,59),0.50,T(45,0),0.00,T(45,0)],["D-HW3",1.00,T(11,18),1.00,T(23,52),1.00,T(32,55)],["D-HY1",1.00,T(14,55),0.00,T(20,37),0.50,T(25,50)],["D-HY2",1.00,T(9,34),1.00,T(7,25),0.50,T(45,0)],["Overall",1.00,T(10,20),0.79,T(17,0),0.57,T(31,25)]];
-document.getElementById("tbl-abl").innerHTML=`<table><caption><b>Table III. DOBOT ablation.</b> Full SPINE reports means over n = 3 trials per scenario; each ablated variant is a single trial.</caption><thead><tr><th rowspan="2">ID</th><th colspan="2" style="text-align:center;border-bottom:1px solid var(--rule)">SPINE</th><th colspan="2" style="text-align:center;border-bottom:1px solid var(--rule)">No profile</th><th colspan="2" style="text-align:center;border-bottom:1px solid var(--rule)">No hardware playbook</th></tr><tr><th class="n sub">OSS</th><th class="n sub">TTO</th><th class="n sub">OSS</th><th class="n sub">TTO</th><th class="n sub">OSS</th><th class="n sub">TTO</th></tr></thead><tbody>${
+document.getElementById("tbl-abl").innerHTML=`<table><caption><b>Table III. DOBOT ablation.</b> Full SPINE reports means over n = 3 trials per scenario; each ablated variant is a single trial.</caption><thead><tr><th rowspan="2">ID</th><th colspan="2" class="grp-s" style="text-align:center;border-bottom:1px solid var(--rule)">SPINE</th><th colspan="2" style="text-align:center;border-bottom:1px solid var(--rule)">No profile</th><th colspan="2" style="text-align:center;border-bottom:1px solid var(--rule)">No hardware playbook</th></tr><tr><th class="n sub">OSS</th><th class="n sub">TTO</th><th class="n sub">OSS</th><th class="n sub">TTO</th><th class="n sub">OSS</th><th class="n sub">TTO</th></tr></thead><tbody>${
   ABL.map(r=>`<tr class="${r[0]==="Overall"?"total":""}"><td class="${r[0]==="Overall"?"":"id"}">${r[0]}</td><td class="n">${f2(r[1])}</td><td class="n">${mmss(r[2])}</td><td class="n">${f2(r[3])}</td><td class="n">${mmss(r[4])}</td><td class="n">${f2(r[5])}</td><td class="n">${mmss(r[6])}</td></tr>`).join("")
 }</tbody></table>`;
 
@@ -318,6 +410,19 @@ function renderCharts(){
   bars("ch-p-oss",OUT.PiPER,r=>[r[3],r[4],r[8],r[9]],1,v=>v.toFixed(1),[0,.5,1],false);
 }
 renderCharts();
+
+/* ---------- spine nav: highlight the section in view ---------- */
+(()=>{const nav=document.querySelector(".spine-nav");if(!nav)return;
+ const links=[...nav.querySelectorAll("a")],targets=links.map(a=>document.querySelector(a.getAttribute("href")));
+ const update=()=>{nav.classList.toggle("show",scrollY>window.innerHeight*.5);
+  let cur=0;targets.forEach((t,i)=>{if(t&&t.getBoundingClientRect().top<window.innerHeight*.35)cur=i;});
+  links.forEach((a,i)=>a.classList.toggle("on",i===cur));};
+ addEventListener("scroll",update,{passive:true});update();})();
+
+/* ---------- glance bars fill when visible ---------- */
+(()=>{const g=document.getElementById("glance");if(!g)return;
+ if(!("IntersectionObserver" in window)||matchMedia("(prefers-reduced-motion: reduce)").matches){g.classList.add("in");return;}
+ new IntersectionObserver((es,o)=>{es.forEach(e=>{if(e.isIntersecting){g.classList.add("in");o.disconnect();}})},{threshold:.3}).observe(g);})();
 
 /* ---------- copy bibtex ---------- */
 document.getElementById("copybtn").addEventListener("click",async e=>{
