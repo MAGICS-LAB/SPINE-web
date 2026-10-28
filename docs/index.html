@@ -17,6 +17,9 @@
 <meta name="twitter:title" content="SPINE: Bridging the Cyber-Physical Gap with Agentic AI">
 <meta name="twitter:description" content="An agentic framework that debugs and restores teleoperation on bimanual robots.">
 <meta name="twitter:image" content="https://magics-lab.github.io/SPINE-web/assets/og.png">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -209,6 +212,7 @@ figcaption b{color:var(--ink);font-weight:600}
 .robots p{font-size:14px;color:var(--ink-3);margin-top:4px;line-height:1.5}
 .robots .pill{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.1em;color:var(--blue);margin-top:10px;display:block}
 @media(max-width:620px){.robots{grid-template-columns:1fr}}
+@media(min-width:1100px){.robots{display:none}}
 /* tables */
 .tbl{overflow-x:auto;margin-top:22px}
 table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.45}
@@ -249,26 +253,23 @@ footer .col{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 @media(min-width:960px){
   .plats{display:grid;grid-template-columns:1fr 1fr;gap:0 40px}
   .plats .plat + .plat{margin-top:4px;padding-top:0;border-top:0;padding-left:40px;border-left:1px solid var(--line-2);margin-left:-40px}
-  .text.two{column-count:2;column-gap:44px}
+  .text.two{column-count:2;column-gap:48px}
   .text.two p{break-inside:avoid-column}
   .text.two p + p{margin-top:0}
-  .m-split{display:grid;grid-template-columns:1fr 1.25fr;gap:40px;align-items:start}
-  .m-split .stages{margin-top:4px;grid-template-columns:1fr 1fr}
-  .end-split{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:start}
+  .end-split{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
   .end-split #ack{padding-top:0}
 }
 .plats .bar{grid-template-columns:118px 1fr 50px}
 @media(min-width:960px){
-  .r-row{display:grid;grid-template-columns:1fr 2fr;gap:32px;align-items:start;margin-top:40px}
+  .r-row{display:grid;grid-template-columns:1fr 2fr;gap:48px;align-items:start;margin-top:40px}
   .r-row .charts{margin-top:0}
   .r-row .r-text h3.sub{margin-top:0}
   .r-row .r-text .text p{font-size:15.5px;line-height:1.6}
   .r-row .legend{margin-top:14px}
-  .r-row.abl{grid-template-columns:1fr 1.7fr}
   .r-row.abl .tbl{margin-top:0}
 }
 @media(min-width:960px){
-  .r-row.scen{grid-template-columns:1fr 2.5fr;margin-top:0}
+  .r-row.scen{margin-top:0}
   .r-row.scen .tbl{margin-top:0}
   .r-row.scen .r-text{position:sticky;top:84px}
   .r-row.scen .r-text .text p{font-size:15.5px;line-height:1.6}
@@ -277,10 +278,40 @@ h2.sm{font-size:24px;margin-bottom:10px}
 .end-split{padding-top:56px}
 .end-split .bib-card{margin-top:12px}
 .end-split #ack .text p{font-size:15.5px;line-height:1.6;color:var(--ink-2)}
+.m-two{margin-top:26px}
+.m-two h3.sub{margin-top:0}
+.m-two p{font-size:15.5px;line-height:1.65;color:var(--ink-2)}
+.m-two > div + div{margin-top:26px}
+@media(min-width:900px){.m-two{display:grid;grid-template-columns:1fr 1fr;gap:48px}.m-two > div + div{margin-top:0}}
 .abl-pts{margin-top:16px}
 .abl-pts li{font-size:14.5px;color:var(--ink-2)}
 .abl-pts b{color:var(--ink);font-weight:600}
 footer{margin-top:56px}
+/* collapsible per-scenario tables */
+details.more{margin-top:20px;border:1px solid var(--line);border-radius:12px;background:#fff}
+details.more summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;font-size:14.5px;font-weight:500;color:var(--ink-2)}
+details.more summary::-webkit-details-marker{display:none}
+details.more summary:hover{color:var(--ink)}
+details.more summary svg{width:16px;height:16px;transition:transform .2s;color:var(--ink-3)}
+details.more[open] summary svg{transform:rotate(180deg)}
+details.more .tbl{margin:0;padding:0 16px 12px}
+/* figure zoom */
+figure.zoom img{cursor:zoom-in}
+.lb{position:fixed;inset:0;z-index:50;background:rgba(255,255,255,.96);display:grid;place-items:center;padding:28px;cursor:zoom-out}
+.lb[hidden]{display:none}
+.lb img{max-width:min(1600px,100%);max-height:100%;object-fit:contain;border-radius:10px;box-shadow:0 20px 60px -20px rgba(20,24,40,.35)}
+.lb-x{position:absolute;top:14px;right:18px;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:#fff;font-size:24px;line-height:1;cursor:pointer;color:var(--ink)}
+/* keep single-column prose to a readable measure */
+/* debugging loop drawn as a horizontal spine */
+.loop{list-style:none;margin:30px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:0 28px;position:relative}
+.loop::before{content:"";position:absolute;left:0;right:0;top:9px;height:2px;background:var(--line)}
+.loop li{position:relative}
+.loop .vb{display:block;position:relative;width:46px;height:20px;border-radius:6px;background:var(--c);box-shadow:0 0 0 5px #fff}
+.loop h4{margin:16px 0 4px;font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:19px;color:var(--ink);display:flex;align-items:baseline;gap:8px}
+.loop h4 .n{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:500;color:var(--c)}
+.loop p{font-size:14.5px;line-height:1.55;color:var(--ink-3);max-width:30ch}
+@media(max-width:760px){.loop{grid-template-columns:1fr 1fr;gap:26px 24px}.loop::before{display:none}}
+@media(max-width:440px){.loop{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -319,7 +350,7 @@ footer{margin-top:56px}
 
   <div class="demo-intro">
     <p class="lab">SPINE at work</p>
-    <p class="dek">SPINE debugs bimanual robots until teleoperation works. Step through one scenario below.</p>
+    <p class="dek">One debugging session on DOBOT X-Trainer. In scenario D-HY2 we unplugged the robot-control Ethernet cable and moved both controller IPs to the wrong subnet.</p>
   </div>
   <div class="demo" id="demo">
     <div class="ctrl">
@@ -338,7 +369,7 @@ footer{margin-top:56px}
 pipeline        <span class="bad">FAIL</span>  controllers unreachable
 readiness check <span class="bad">FAIL</span>  robot-control link
 <span class="dim">blocker ledger: 2 active</span></div>
-      <div class="expl"><span class="lab" style="color:var(--observe)">Scenario D-HY2</span><h3>Observe</h3><p>SPINE runs the live pipeline and hidden readiness checks, and logs each failure in a blocker ledger.</p><div class="chips"><span class="chip">live pipeline</span><span class="chip">readiness checks</span></div></div>
+      <div class="expl"><span class="lab" style="color:var(--observe)">Step 1 of 4</span><h3>Observe</h3><p>SPINE runs the teleoperation pipeline and the readiness checks. Both fail, and each failure is logged as an open blocker.</p><div class="chips"><span class="chip">live pipeline</span><span class="chip">readiness checks</span></div></div>
     </div>
     <div class="pane" role="tabpanel" hidden>
       <div class="term"><span class="dim">4 read-only subagents, in parallel</span>
@@ -347,7 +378,7 @@ software   <span class="dim">→</span> launcher IPs on wrong subnet
 hardware   <span class="dim">→</span> control Ethernet link down
 readiness  <span class="dim">→</span> both blockers relevant
 <span class="p">split:</span> 1 software fix · 1 operator action</div>
-      <div class="expl"><span class="lab" style="color:var(--triage)">Scenario D-HY2</span><h3>Triage</h3><p>Four subagents check the evidence in parallel. SPINE sorts the fixes into software edits and operator actions.</p><div class="chips"><span class="chip b">software-fixable</span><span class="chip">human-fixable</span></div></div>
+      <div class="expl"><span class="lab" style="color:var(--triage)">Step 2 of 4</span><h3>Triage</h3><p>Four read-only subagents inspect logs, software, hardware and readiness in parallel. Their reports point to one software fix and one physical fix.</p><div class="chips"><span class="chip b">software-fixable</span><span class="chip">human-fixable</span></div></div>
     </div>
     <div class="pane" role="tabpanel" hidden>
       <div class="term"><span class="p">$</span> debug after-fix
@@ -355,24 +386,24 @@ readiness  <span class="dim">→</span> both blockers relevant
 <span class="p">operator</span> reconnect the robot-control Ethernet cable
 <span class="p">$</span> debug continue
 <span class="ok">✓</span> link probe passes</div>
-      <div class="expl"><span class="lab" style="color:var(--repair)">Scenario D-HY2</span><h3>Repair</h3><p>The agent fixes the launcher config, then guides the operator through one physical step and probes the result.</p><div class="chips"><span class="chip b">agent edit</span><span class="chip">operator action</span></div></div>
+      <div class="expl"><span class="lab" style="color:var(--repair)">Step 3 of 4</span><h3>Repair</h3><p>SPINE restores the controller IPs itself, then asks the operator to reconnect the Ethernet cable and probes the link.</p><div class="chips"><span class="chip b">agent edit</span><span class="chip">operator action</span></div></div>
     </div>
     <div class="pane" role="tabpanel" hidden>
       <div class="term"><span class="p">$</span> debug finish
 pipeline        <span class="ok">PASS</span>
 readiness check <span class="ok">PASS</span>  <span class="dim">same cycle</span>
 <span class="ok">✓ case closed · teleoperation ready</span></div>
-      <div class="expl"><span class="lab" style="color:var(--verify)">Scenario D-HY2</span><h3>Verify</h3><p>The case closes only when the pipeline and readiness checks pass in the same cycle. Otherwise SPINE returns to triage.</p><div class="chips"><span class="chip b">validation-gated closure</span></div></div>
+      <div class="expl"><span class="lab" style="color:var(--verify)">Step 4 of 4</span><h3>Verify</h3><p>The pipeline and readiness checks pass in the same run, so SPINE closes the case. If either had failed, it would go back to triage.</p><div class="chips"><span class="chip b">validation-gated closure</span></div></div>
     </div>
-    <p class="note">Illustrative walk-through of scenario D-HY2 (unplugged control cable, wrong subnet), not a recorded log.</p>
+    <p class="note">Illustrative walk-through, not a recorded log.</p>
   </div>
 
 </div>
 
 <section class="col" id="overview">
   <div class="text rv two">
-    <p>Foundation models give robots strong high-level reasoning, but turning it into reliable physical action still means aligning drivers, networks, sensors, controllers and safety constraints for every platform. This integration layer, the robot's spinal cord, is a primary bottleneck for scalable embodied AI. SPINE (Scalable Physical Integration with ageNtic Expertise) is an agentic framework that debugs bimanual robots until teleoperation works: a profile builder compiles robot-specific context, and a debugger uses it to diagnose, repair and validate.</p>
-    <p>Across two bimanual robots and 12 debugging scenarios, a novice using SPINE recovered more completely and faster than human operators using Claude Code. On DOBOT X-Trainer, SPINE raised success from 76% to 100% and cut mean time-to-teleoperation by 30%. On AgileX PiPER, it reached 100% success and cut time by 38%.</p>
+    <p>Foundation models give robots strong high-level reasoning, but getting a real robot to act still means aligning drivers, networks, sensors, controllers and safety constraints for each platform. We call this integration layer the robot's spinal cord, and it is a main bottleneck for scaling embodied AI. SPINE (Scalable Physical Integration with ageNtic Expertise) is an agentic framework that debugs bimanual robots until teleoperation works. A profile builder compiles what SPINE needs to know about a robot, and a debugger uses that profile to diagnose, repair and verify.</p>
+    <p>We tested SPINE on two bimanual robots across 12 debugging scenarios. A robotics novice using SPINE resolved more faults, and faster, than human operators using Claude Code. On DOBOT X-Trainer, SPINE resolved every fault (humans 76%) and cut mean time-to-teleoperation by 30%. On AgileX PiPER, it also resolved every fault (humans 99%) and was 38% faster.</p>
   </div>
   <div class="card rv" id="glance" style="margin-top:30px">
     <div class="card-h"><span class="lab">SPINE vs. human operators</span></div>
@@ -397,72 +428,61 @@ readiness check <span class="ok">PASS</span>  <span class="dim">same cycle</span
     <p class="muted" style="margin-top:18px;font-size:13px">A robotics novice runs SPINE; human operators use Claude Code with the same model (Claude Sonnet 5.0). Times include unsuccessful trials.</p>
   </div>
   <div class="robots rv">
-    <div class="card"><img src="assets/dobot.jpg" alt="DOBOT X-Trainer bimanual teleoperation platform seen from above"><div class="cap"><h4>DOBOT X-Trainer</h4><p>Two follower arms, two leader arms, RealSense cameras and a vendor SDK over static Ethernet.</p><span class="pill">7 SCENARIOS</span></div></div>
-    <div class="card"><img src="assets/piper.jpg" alt="AgileX PiPER bimanual platform"><div class="cap"><h4>AgileX PiPER</h4><p>Four PiPER 6-DOF arms on ROS Noetic with USB-to-CAN adapters and RealSense cameras.</p><span class="pill">5 SCENARIOS</span></div></div>
+    <div class="card"><img src="assets/dobot.jpg" alt="DOBOT X-Trainer bimanual teleoperation platform seen from above" loading="lazy"><div class="cap"><h4>DOBOT X-Trainer</h4><p>Two follower arms, two leader arms, RealSense cameras and a vendor SDK over static Ethernet.</p><span class="pill">7 SCENARIOS</span></div></div>
+    <div class="card"><img src="assets/piper.jpg" alt="AgileX PiPER bimanual platform" loading="lazy"><div class="cap"><h4>AgileX PiPER</h4><p>Four PiPER 6-DOF arms on ROS Noetic with USB-to-CAN adapters and RealSense cameras.</p><span class="pill">5 SCENARIOS</span></div></div>
   </div>
-  <p class="muted rv" style="margin-top:10px"><b style="color:var(--ink);font-weight:600">Figure 1.</b> Bimanual robot platforms used in the evaluation.</p>
 </section>
 
 <section class="col" id="method">
   <h2 class="rv">Method</h2>
   <div class="m-split">
-  <div class="text rv"><p>SPINE runs in Claude Code as two skills on a Python backend: <code>/spine-profile-build</code> builds robot-specific context, and <code>/spine-debug</code> uses it to restore teleoperation. The agent picks each intervention, but only execution evidence checked by the backend can close a case.</p></div>
-  <ol class="stages rv">
-    <li style="--c:var(--observe)"><span class="lab">Step 1</span><h4>Observe</h4><p>Run the live pipeline and hidden readiness checks; log failures in a blocker ledger.</p></li>
-    <li style="--c:var(--triage)"><span class="lab">Step 2</span><h4>Triage</h4><p>Four read-only subagents inspect logs, software and config, hardware, and readiness checks in parallel.</p></li>
-    <li style="--c:var(--repair)"><span class="lab">Step 3</span><h4>Repair</h4><p>Apply one software edit, or guide one physical action from a hardware playbook.</p></li>
-    <li style="--c:var(--verify)"><span class="lab">Step 4</span><h4>Verify</h4><p>Close only if the pipeline and checks pass in the same cycle; otherwise go back to triage.</p></li>
-  </ol>
+  <div class="text rv"><p>SPINE runs inside Claude Code as two skills backed by Python. <code>/spine-profile-build</code> learns a robot once, and <code>/spine-debug</code> uses what it learned to get teleoperation working again. The agent chooses each fix, but only the backend can close a case, and only after its checks pass.</p></div>
+  <div class="m-two rv">
+    <div><h3 class="sub">Profile building</h3><p>The operator provides the robot's documentation, a known-good copy of its software and a few setup facts. Nine subagents read these in parallel. Eight each write one part of the profile (identity, components, interfaces, software, configuration, procedures, safety, diagnostics), and the ninth reconstructs the commands that bring up teleoperation. The operator confirms the command sequence, interfaces, hardware playbooks and readiness checks. Nine reviewers and an adjudicator then check the profile, and a deterministic checker validates it before use.</p></div>
+    <div><h3 class="sub">Debugging</h3><p><code>debug start</code> runs the teleoperation pipeline and records each failure. Four read-only subagents examine terminal output, software and configuration, hardware visibility and readiness checks in parallel. SPINE applies software fixes itself through <code>debug after-fix</code>. For a physical fix, <code>debug continue</code> walks the operator through one step from a hardware playbook. <code>debug finish</code> closes the case only when the full pipeline and the readiness checks pass in the same run, and a fix enters incident memory only after it passes validation.</p></div>
   </div>
-  <figure class="rv">
+  </div>
+  <figure class="rv zoom">
     <img src="assets/figure1.png" alt="SPINE debugging workflow: persistent robot context (robot evidence, robot profile, validated memory) grounds a four-stage loop of observe, triage, repair and verify; unresolved cases return new evidence to triage.">
-    <figcaption><b>Figure 2.</b> SPINE debugging workflow. Persistent robot knowledge grounds a recovery loop. Triage runs four read-only diagnostic subagents in parallel and sorts fixes into software edits and operator actions; repair applies one of them. Verification reruns the live pipeline and hidden readiness checks together, and unresolved cases return to triage with new evidence.</figcaption>
+    <figcaption><b>Figure 1.</b> SPINE debugging workflow. Triage runs four read-only subagents in parallel and splits the work into software edits and operator actions. Repair applies one of them. Verification reruns the live pipeline and readiness checks together, and unresolved cases go back to triage with the new evidence.</figcaption>
   </figure>
-  <div class="cards rv">
-    <div class="card"><span class="lab">Profile building</span>
-      <p class="lede">From documentation, a known-good repository and setup facts, nine subagents extract the profile in parallel: eight cover robot categories (identity, components, interfaces, software, configuration, procedures, safety, diagnostics) and one reconstructs the teleoperation pipeline.</p>
-      <ul class="dots"><li>Output: eight category files plus a manifest, exposed as contracts, probes, readiness checks, hardware playbooks and a pipeline command graph</li><li>The operator confirms the command graph, interfaces, playbooks and readiness checks</li><li>Nine curators and an adjudicator review it; a deterministic profile doctor checks it before sealing</li></ul></div>
-    <div class="card"><span class="lab">Debugging</span>
-      <p class="lede"><code>debug start</code> runs the declared pipeline and logs failures in a blocker ledger. Four read-only subagents then examine terminal output, software and config, hardware visibility and readiness checks in parallel.</p>
-      <ul class="dots"><li>Software fixes go through <code>debug after-fix</code>; physical steps from a hardware playbook go through <code>debug continue</code></li><li><code>debug finish</code> closes a case only when the pipeline and readiness checks pass in the same latest cycle</li><li><code>/spine-closeout</code> logs the incident; memory marks a fix resolved only with a passing validation</li></ul></div>
-  </div>
-  <figure class="rv">
+  <figure class="rv zoom">
     <img src="assets/system.png" alt="SPINE system overview: setup inputs feed /spine-profile-build, which produces a robot profile; /spine-debug uses the profile with runtime inputs through start, after-fix, continue and finish, supported by /spine-check and /spine-closeout.">
-    <figcaption><b>Figure 3.</b> SPINE system overview. The profile builder compiles robot context; the debugger combines it with live evidence and incident memory to repair software, guide physical fixes and verify teleoperation readiness.</figcaption>
+    <figcaption><b>Figure 2.</b> SPINE system overview. The profile builder compiles robot context. The debugger combines it with live evidence and incident memory to fix software, guide physical repairs and check that teleoperation works.</figcaption>
   </figure>
 </section>
 
 <section class="col" id="scenarios">
   <div class="r-row scen rv">
-    <div class="r-text"><h2>Debugging Scenarios</h2><div class="text"><p>Twelve scenarios cover software-only (SW), hardware-only (HW) and hybrid (HY) faults, two faults each except D-HW1. An administrator implants them without telling the operator. Success means the follower arms and grippers respond to the master arms while all required camera streams are live.</p></div></div>
+    <div class="r-text"><h2>Debugging scenarios</h2><div class="text"><p>The 12 scenarios implant software-only (SW), hardware-only (HW) or hybrid (HY) faults, two per scenario except D-HW1. An administrator implants them without telling the operator. A scenario is solved when the follower arms and grippers follow the leader arms and every required camera stream is live.</p></div></div>
     <div class="tbl" id="scen"></div>
   </div>
 </section>
 
 <section class="col" id="results">
   <h2 class="rv">Results</h2>
-  <div class="text rv"><p>SPINE ran three trials per scenario; human results pool seven operators on DOBOT and nine on PiPER, using Claude Code with the same model (Claude Sonnet 5.0) but without SPINE. OSS is the fraction of implanted faults resolved per trial; TTO is mean ± SD time-to-teleoperation, including unsuccessful trials.</p></div>
+  <div class="text rv"><p>SPINE ran three trials per scenario. The human baseline pools seven operators on DOBOT and nine on PiPER, all using Claude Code with the same model (Claude Sonnet 5.0) but without SPINE. OSS is the fraction of implanted faults resolved in a trial. TTO is time-to-teleoperation, mean ± SD, and includes unsuccessful trials.</p></div>
 
   <div class="r-row rv">
-    <div class="r-text"><h3 class="sub">DOBOT X-Trainer</h3><div class="text"><p>SPINE resolved every fault (OSS 0.76 → 1.00) and cut mean time-to-teleoperation from 14:51 to 10:20 (30%). The gain came from software-only and hybrid scenarios; both groups solved all hardware-only ones. SPINE was faster in six of seven scenarios. On D-HY1 it was slower (14:55 vs. 11:55) but resolved every fault, where humans averaged 0.64.</p></div><div class="legend"><span><i style="background:var(--spine)"></i>SPINE</span><span><i style="background:var(--human)"></i>Human operators</span></div></div>
+    <div class="r-text"><h3 class="sub">DOBOT X-Trainer</h3><div class="text"><p>SPINE resolved every fault, against 0.76 for human operators, and cut mean time-to-teleoperation from 14:51 to 10:20, 30% faster. Most of the gain came from software-only and hybrid scenarios. Both groups solved all hardware-only ones. SPINE was faster in six of seven scenarios. The exception was D-HY1, where it took 14:55 against 11:55 but resolved every fault, while humans averaged 0.64.</p></div><div class="legend"><span><i style="background:var(--spine)"></i>SPINE</span><span><i style="background:var(--human)"></i>Human operators</span></div></div>
     <div class="charts">
     <div class="card chart"><h5>Time-to-teleoperation</h5><p class="muted">mm:ss, mean with SD, lower is better</p><svg id="ch-d-tto" viewBox="0 0 400 250" role="img" aria-label="DOBOT time-to-teleoperation per scenario"></svg></div>
     <div class="card chart"><h5>Faults resolved (OSS)</h5><p class="muted">mean fraction of implanted faults</p><svg id="ch-d-oss" viewBox="0 0 400 250" role="img" aria-label="DOBOT faults resolved per scenario"></svg></div>
     </div>
   </div>
-  <div class="tbl rv" id="tbl-dobot"></div>
+  <details class="more rv"><summary><span>Per-scenario table · DOBOT X-Trainer</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><div class="tbl" id="tbl-dobot"></div></details>
 
   <div class="r-row rv">
-    <div class="r-text"><h3 class="sub">AgileX PiPER</h3><div class="text"><p>Humans already resolved nearly every fault (OSS 0.99), so SPINE's edge was speed: faster in every scenario, with mean time down from 12:30 to 7:48 (38%). The biggest drop was P-HW1, from 13:36 to 2:45 (about 80%).</p></div><div class="legend"><span><i style="background:var(--spine)"></i>SPINE</span><span><i style="background:var(--human)"></i>Human operators</span></div></div>
+    <div class="r-text"><h3 class="sub">AgileX PiPER</h3><div class="text"><p>Human operators already resolved nearly every fault (0.99), so the difference on PiPER is speed. SPINE was faster in every scenario and cut mean time from 12:30 to 7:48, 38% faster. P-HW1 dropped the most, from 13:36 to 2:45.</p></div><div class="legend"><span><i style="background:var(--spine)"></i>SPINE</span><span><i style="background:var(--human)"></i>Human operators</span></div></div>
     <div class="charts">
     <div class="card chart"><h5>Time-to-teleoperation</h5><p class="muted">mm:ss, mean with SD, lower is better</p><svg id="ch-p-tto" viewBox="0 0 400 250" role="img" aria-label="PiPER time-to-teleoperation per scenario"></svg></div>
     <div class="card chart"><h5>Faults resolved (OSS)</h5><p class="muted">mean fraction of implanted faults</p><svg id="ch-p-oss" viewBox="0 0 400 250" role="img" aria-label="PiPER faults resolved per scenario"></svg></div>
     </div>
   </div>
-  <div class="tbl rv" id="tbl-piper"></div>
+  <details class="more rv"><summary><span>Per-scenario table · AgileX PiPER</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><div class="tbl" id="tbl-piper"></div></details>
 
   <div class="r-row abl rv" id="ablation">
-    <div class="r-text"><h3 class="sub">Ablation on DOBOT</h3><div class="text"><p>Removing the robot profile or the hardware playbook lowers fault resolution and slows debugging, mostly in hardware-only and hybrid scenarios. Each variant ran once per scenario, so these results are preliminary.</p></div><ul class="dots abl-pts"><li><b>No profile:</b> faults resolved 1.00 → 0.79; mean time 10:20 → 17:00. It resolved half of D-HW2 and none of D-HY1.</li><li><b>No hardware playbook:</b> faults resolved 1.00 → 0.57; mean time 10:20 → 31:25, about three times longer.</li><li>Both variants still solved every software-only scenario; they failed where physical work was needed.</li></ul></div>
+    <div class="r-text"><h3 class="sub">Ablation on DOBOT</h3><div class="text"><p>We removed either the robot profile or the hardware playbook and ran each DOBOT scenario once, so these results are preliminary. Without the profile, SPINE resolved 0.79 of faults and mean time rose from 10:20 to 17:00. It solved half of D‑HW2 and none of D‑HY1. Without the hardware playbook, it resolved 0.57 and took 31:25, about three times as long. Both variants still solved every software-only scenario and failed where the fix needed physical work.</p></div></div>
     <div class="tbl" id="tbl-abl"></div>
   </div>
 </section>
@@ -488,6 +508,8 @@ readiness check <span class="ok">PASS</span>  <span class="dim">same cycle</span
   </div>
 </section>
 </main>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Enlarged figure"><button class="lb-x" type="button" aria-label="Close">×</button><img alt=""></div>
 
 <footer><div class="col"><span>SPINE · Northwestern University · 2026</span><a href="https://arxiv.org/abs/2607.13049">arXiv 2607.13049</a></div></footer>
 
@@ -606,6 +628,14 @@ renderCharts();
  show(0);
  if(!reduce&&"IntersectionObserver" in window){const io=new IntersectionObserver(es=>{if(es[0].isIntersecting){start();io.disconnect();}},{threshold:.4});io.observe(root);}
  else steps.forEach(s=>s.querySelector("b").style.transform="scaleX(1)");})();
+
+/* ---------- figure zoom ---------- */
+(()=>{const lb=document.getElementById("lb"),im=lb.querySelector("img");let last=null;
+ const close=()=>{lb.hidden=true;document.body.style.overflow="";last&&last.focus();};
+ document.querySelectorAll("figure.zoom img").forEach(img=>{img.tabIndex=0;img.setAttribute("role","button");img.setAttribute("aria-label",(img.alt||"Figure")+" (click to enlarge)");
+  const open=()=>{last=img;im.src=img.src;im.alt=img.alt;lb.hidden=false;document.body.style.overflow="hidden";lb.querySelector(".lb-x").focus();};
+  img.addEventListener("click",open);img.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();open();}});});
+ lb.addEventListener("click",close);addEventListener("keydown",e=>{if(e.key==="Escape"&&!lb.hidden)close();});})();
 
 /* ---------- copy bibtex ---------- */
 document.getElementById("copybtn").addEventListener("click",async e=>{const btn=e.currentTarget;
